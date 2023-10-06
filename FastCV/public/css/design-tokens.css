@@ -1,0 +1,31 @@
+/************************************************************************
+ ------------------------------VARIABLES CSS----------------------------
+ ************************************************************************/
+ :root {
+    --color-background: #0A192F;
+    --color-text: #FFFFFF;
+    --color-muted: #B4B4B4;
+    --color-primary: #3A8DFF;
+    --color-success: #38B000;
+    --color-delete: #C70000;
+    --color-logo: rgb(201, 174, 21);
+    
+    --font-heading: 'Arial', sans-serif;
+    --font-body: 'Tahoma', sans-serif;
+    --font-logo: 'Verdana', sans-serif;
+    
+    --text-small: 12px;
+    --text-medium: 16px;
+    --text-large: 20px;
+    --text-extralarge: 40px;
+  
+    --spacing-none: 0px;
+    --spacing-small: 5px;
+    --spacing-medium: 10px;
+    --spacing-large: 20px;
+    --spacing-extralarge: 40px;
+  
+    --button-padding: 10px 20px;
+    --big-button-padding: 15px 30px;
+    --button-border-radius: 5px;
+  }

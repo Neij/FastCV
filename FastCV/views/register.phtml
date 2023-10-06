@@ -1,0 +1,25 @@
+<section class=register>
+    <h2>Inscription</h2>
+    <form class="input-container" action="index.php?route=register" method="POST">
+        <input type="hidden" name="csrfToken" value="<?php echo $this->getCsrfToken(); ?>">
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" name="username" id="username" required placeholder="Entrez votre nom d'utilisateur">
+        <br>
+        <label for="email">Adresse e-mail :</label>
+        <input type="email" name="email" id="email" required placeholder="Entrez votre adresse e-mail">
+        <br>
+        <label for="password">Mot de passe : (8 caractères minimum, avec lettres majuscules, minuscules, chiffres et caractères spéciaux)</label>
+        <input type="password" name="password" id="password" required placeholder="Exemple : FastCV29@">
+        <br>
+        <label for="confirm_password">Confirmer le mot de passe :</label>
+        <input type="password" name="confirm_password" id="confirm_password" required placeholder="Confirmez le mot de passe">
+        <br>
+        <input type="submit" value="S'inscrire">
+    </form>
+
+    <?php if (!empty($this->errorMessage)) : ?>
+        <p class="error"><?php echo $this->errorMessage; ?></p>
+    <?php endif; ?>
+
+    <p>Déjà un compte ? <a href="index.php?route=login">Connectez-vous</a></p>
+</section>

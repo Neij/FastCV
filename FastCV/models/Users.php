@@ -9,6 +9,18 @@ class Users {
         $this->db = $db;
     }
 
+    // public function getUserJobs($username) {
+
+    // }
+
+    public function addJob($username, $jobTitle) {
+        $user = $this->getUserByUsername($username);
+        
+        $sql = "INSERT INTO jobs VALUES (NULL, ?, ?);";
+        $params = [$user->id, $jobTitle];
+        return $this->db->execute($sql, $params)
+    }
+
     public function getUserByUsername($username) {
         $sql = "SELECT * FROM users WHERE username = ?";
         $params = [$username];

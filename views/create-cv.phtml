@@ -1,0 +1,70 @@
+<div class="create-cv">
+    <h2 class="create-cv-title">Créer un CV</h2>
+    <section class="input-jobs">
+        <form action="index.php?route=create-cv" method="post">
+            <input type="hidden" name="csrfToken" value="<?php echo $this->getCsrfToken(); ?>">
+            <label for="jobTitle">Titre du métier :</label>
+            <input type="text" id="jobTitle" name="jobTitle" required><br>
+
+            <label for="jobDate">Date (format flexible) :</label>
+            <input type="text" id="jobDate" name="jobDate"><br>
+
+            <label for="jobDescription">Description :</label>
+            <textarea id="jobDescription" name="jobDescription"></textarea><br>
+
+            <button type="submit" class="add-job-button">Ajouter le métier</button>
+
+            <div class="message">
+                <?php
+                // Afficher les messages
+                $successMessage = \helpers\SessionManager::get('success_message');
+                $errorMessage = \helpers\SessionManager::get('error_message');
+
+                if ($successMessage) {
+                    echo '<div class="success-message">' . $successMessage . '</div>';
+                    \helpers\SessionManager::remove('success_message');
+                }
+
+                if ($errorMessage) {
+                    echo '<div class="error-message">' . $errorMessage . '</div>';
+                    \helpers\SessionManager::remove('error_message');
+                }
+                ?>
+            </div>
+        </form>
+    </section>
+    <section class="show-jobs">
+        <h2 class="show-jobs-title">Métiers ajoutés :</h2>
+        <ul>
+            <?php
+            if (!empty($this->viewData['jobs'])) {
+                foreach ($this->viewData['jobs'] as $job) {
+                    // Accédez aux données du métier comme suit :
+                    $jobId = $job['id'];
+                    $jobTitle = $job['title'];
+                    $jobDate = $job['date'];
+                    $jobDescription = $job['description'];
+
+                    // Affichez les données du métier dans votre vue comme vous le souhaitez
+                    echo "<li class='job-item'>";
+                    echo "Titre du métier : $jobTitle <br>";
+                    echo "Date : $jobDate <br>";
+                    echo "Description : $jobDescription <br>";
+
+                    echo '<div class="emoji-button" title="Modifier"><span class="emoji emoji-pencil">✏️</span></div>'; // Bouton crayon
+
+                    echo '<form action="index.php?route=create-cv" method="post" style="display:inline;">';
+                    echo '<input type="hidden" name="deleteJobId" value="' . $jobId . '">';
+                    echo '<button type="submit" class="emoji-button" title="Supprimer"><span class="emoji emoji-trash">🗑️</span></button>';
+                    echo '</form>';
+
+
+                    echo "</li>";
+                }
+            } else {
+                echo "Aucun métier ajouté.";
+            }
+            ?>
+        </ul>
+    </section>
+</div>

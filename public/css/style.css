@@ -1,15 +1,15 @@
 /************************************************************************
  --------------------------COOKIE-CONSENT--------------------------------
  ************************************************************************/
-/* CSS pour positionner le popup en bas de la page */
+
 .centered-popup {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 0; /* Positionne le popup en bas */
+  bottom: 0;
   margin: auto;
-  width: 100%; /* Ajustez la largeur du popup selon vos besoins */
-  height: 100%; /* La hauteur s'ajustera automatiquement au contenu */
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -17,29 +17,27 @@
   z-index: 1000;
 }
 
-/* Style du contenu du popup */
 .popup-content {
-  background-color: #fff;
+  background-color: var(--color-text);
   padding: 20px;
-  border-radius: 5px;
+  border-radius: var(--button-border-radius);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
-/* Style des boutons */
 #accept-cookies,
 #refuse-cookies {
   margin: 10px;
   padding: 10px 20px;
-  background-color: #007bff; /* Couleur de fond bleue */
-  color: #fff; /* Texte en blanc */
+  background-color: var(--color-primary);
+  color: var(--color-text);
   border: none;
   cursor: pointer;
   border-radius: 5px;
 }
 
 #refuse-cookies {
-  background-color: #dc3545; /* Couleur de fond rouge */
+  background-color: var(--color-delete); 
 }
 
 .hidden-popup {
@@ -55,17 +53,13 @@
   color: var(--color-text);
   padding: var(--spacing-large) var(--spacing-none);
   text-align: center;
-
-  /* @media screen {
-        
-    }*/
 }
 
 .header-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 20px;
+  padding: var(--spacing-none) var(--spacing-medium);
 }
 
 .header-logo {
@@ -105,7 +99,6 @@
   flex-direction: column;
 }
 
-/* Pour les écrans de bureau (au-dessus de 992 pixels) */
 @media screen and (min-width: 992px) {
   .header-nav ul {
     flex-direction: row;
@@ -184,6 +177,11 @@ main {
 /************************************************************************
  ------------------------------HOME------------------------------------
  ************************************************************************/
+.emoji {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
 .hero {
   text-align: center;
   padding: 100px 0;
@@ -215,7 +213,6 @@ main {
   color: var(--color-text);
 }
 
-/* Style des sections de fonctionnalités */
 .features {
   padding: 60px 0;
 }
@@ -225,7 +222,7 @@ main {
   text-align: center;
   margin-bottom: 20px;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--color-text);
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -238,7 +235,6 @@ main {
   font-size: 16px;
 }
 
-/* Style de la section Témoignage */
 .testimonial {
   text-align: center;
   padding: 60px 0;
@@ -258,7 +254,6 @@ main {
   margin-top: 10px;
 }
 
-/* Style de la section Commencez Maintenant */
 .start-now {
   text-align: center;
   padding: 60px 0;
@@ -266,7 +261,114 @@ main {
   color: #333;
 }
 
-/* Style de la section À Propos */
+.home-about {
+  text-align: center;
+  padding: 60px 0;
+  background-color: var(--color-text);
+  color: var(--color-background);
+}
+.follow-us {
+  text-align: center;
+  padding: 60px 0;
+  background-color: #3a8dff;
+  color: #fff;
+}
+
+/************************************************************************
+--------------------------A PROPOS--------------------------
+************************************************************************/
+
+.custom-heading {
+  display: inline-block;
+}
+
+.custom-heading h2 {
+  color: #fff;
+  font-family: Avenir Next, Helvetica Neue, Helvetica, Tahoma, sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  display: inline-block;
+  position: relative;
+  letter-spacing: calc(100em / 1000);
+  border: solid 3px var(--color-background);
+  border-radius: var(--spacing-small);
+  padding: 50px var(--spacing-large) var(--spacing-medium) var(--spacing-large);
+}
+
+.custom-heading h2 span {
+  display: inline-block;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 500px;
+  -webkit-font-smoothing: antialiased;
+  transition: transform 0.3s ease-out;
+}
+
+.custom-heading h2 span::before,
+.custom-heading h2 span::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: -1px;
+  transform-origin: left top;
+  transform: scale(1.1, 1) skew(0deg, -40deg);
+  transition: transform 0.3s ease-out;
+  color: rgba(35, 35, 134, 0.2);
+  z-index: 1;
+}
+
+.custom-heading h2 span::after {
+  text-shadow: -1px 0 1px var(--color-background), 1px 0 1px rgba(0, 0, 0, 0.8);
+  transform: rotateY(-40deg);
+  z-index: 2;
+}
+
+.custom-heading h2 .green-letter:hover::before {
+  transform: scale(1.1, 1) skew(0deg, -10deg);
+}
+
+.custom-heading h2 .green-letter:hover::after {
+  transform: rotateY(-10deg);
+  color: var(--color-success);
+}
+
+.custom-heading h2 .blue-letter:hover::before {
+  transform: scale(1.1, 1) skew(0deg, -10deg);
+}
+
+.custom-heading h2 .blue-letter:hover::after {
+  transform: rotateY(-10deg);
+  color: var(--color-primary);
+}
+
+@media (min-width: 20em) {
+  .custom-heading h2 {
+    font-size: 2em;
+  }
+  .custom-heading h2 span::before,
+  .custom-heading h2 span::after {
+    display: block;
+  }
+}
+
+@media (min-width: 30em) {
+  .custom-heading h2 {
+    font-size: 3em;
+  }
+}
+
+@media (min-width: 40em) {
+  .custom-heading h2 {
+    font-size: 5em;
+  }
+}
+
+@media (min-width: 60em) {
+  .custom-heading h2 {
+    font-size: 8em;
+  }
+}
+
 .about {
   text-align: center;
   padding: 60px 0;
@@ -282,29 +384,6 @@ main {
   margin: 0 20px;
 }
 
-.follow-us {
-  text-align: center;
-  padding: 60px 0;
-  background-color: #3a8dff;
-  color: #fff;
-}
-
-.social-icon {
-  font-size: 36px;
-  margin: 0 15px;
-  color: #fff;
-  transition: color 0.3s;
-}
-
-.social-icon:hover {
-  color: #f0f0f0;
-}
-
-/* Style des emojis */
-.emoji {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
 /************************************************************************
  ------------------------------CREATE-CV------------------------------------
  ************************************************************************/
@@ -414,20 +493,17 @@ textarea {
   text-align: center;
 }
 
-/* Hover pour les éléments de formulaire */
 .create-cv input[type="text"]:hover,
 textarea:hover {
   background-color: var(--color-muted);
   border: 1px solid var(--color-success);
 }
 
-/* Focus pour les éléments de formulaire */
 .create-cv input[type="text"]:focus,
 textarea:focus {
   border: 1px solid var(--color-primary);
 }
 
-/* Placeholder pour les éléments de formulaire */
 .create-cv input[type="text"]::placeholder,
 textarea::placeholder {
   color: var(--color-muted);
@@ -452,8 +528,8 @@ textarea::placeholder {
  ------------------------------LOGIN------------------------------------
  ************************************************************************/
 .input-container {
-  width: 50%; 
-  margin: var(--spacing-none) auto; 
+  width: 50%;
+  margin: var(--spacing-none) auto;
 }
 
 .login {
@@ -578,7 +654,7 @@ textarea::placeholder {
   margin: var(--spacing-small) 0;
   border-radius: var(--spacing-small);
   width: 100%;
-  text-align: center; /* Pour centrer le texte */
+  text-align: center;
   font-size: var(--spacing-large);
 }
 
@@ -623,8 +699,6 @@ textarea::placeholder {
 .register a:hover {
   color: var(--color-success);
 }
-
-
 
 /************************************************************************
  ------------------------------FOOTER------------------------------------
@@ -741,7 +815,7 @@ textarea::placeholder {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: #fafafa;
-  border: 3px solid var(--color-primary); /* Ajout d'un cadre */
+  border: 3px solid var(--color-primary);
 }
 
 .politique-confidentialite h1 {
@@ -779,7 +853,6 @@ textarea::placeholder {
   padding-left: var(--spacing-large);
 }
 
-/* Styles spécifiques pour certaines parties */
 .politique-confidentialite p:first-child {
   font-size: var(--text-large);
   text-align: center;
@@ -831,7 +904,6 @@ textarea::placeholder {
   color: var(--color-success);
 }
 
-/* Styles globaux */
 .cv {
   font-family: var(--font-body, Arial, sans-serif);
   margin: var(--spacing-none);
@@ -865,7 +937,6 @@ ul {
   padding-left: var(--spacing-medium);
 }
 
-/* Bouton de retour à l'accueil */
 .back-button {
   position: fixed;
   bottom: var(--spacing-medium);
@@ -922,7 +993,6 @@ footer {
   padding: var(--spacing-small) var(--spacing-none);
 }
 
-/* Ajoutez cette classe aux sections que vous souhaitez animer */
 .animated-section {
   opacity: 0;
   transform: translateY(var(--spacing-medium));

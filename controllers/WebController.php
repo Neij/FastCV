@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-
 class WebController {
     public $template;
 

@@ -33,7 +33,6 @@ class AppController extends WebController {
     }
 
     public function hasConsent() {
-        // Fonction pour vérifier si l'utilisateur a donné son consentement
         return isset($_COOKIE["consent_cookie"]) && $_COOKIE["consent_cookie"] === "accepted";
     }
 

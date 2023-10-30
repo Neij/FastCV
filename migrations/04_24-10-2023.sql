@@ -1,0 +1,3 @@
+ALTER TABLE jobs
+ADD COLUMN date VARCHAR(50), 
+ADD COLUMN description TEXT;

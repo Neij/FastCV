@@ -1,0 +1,109 @@
+/************************************************************************
+ ---------------------------POLITIQUE CONFIDENTIALITE------------------
+ ************************************************************************/
+ 
+.politique-confidentialite {
+    background-color: var(--color-background);
+    font-family: var(--font-body);
+    font-size: var(--text-medium);
+    line-height: 1.6;
+    margin: var(--spacing-none);
+    padding: 0;
+    text-align: center;
+}
+
+.politique-confidentialite .container-politique {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-medium);
+    text-align: left;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #FAFAFA;
+    border: 3px solid var(--color-primary); /* Ajout d'un cadre */
+}
+
+.politique-confidentialite h1 {
+    font-family: var(--font-heading);
+    font-size: var(--text-extralarge);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-medium);
+    text-align: center;
+}
+
+.politique-confidentialite strong {
+    color: var(--color-primary);
+}
+
+.politique-confidentialite strong:hover {
+    color: var(--color-success);
+}
+
+.politique-confidentialite h2 {
+    color: var(--color-primary);
+    text-align: center;
+    font-size: var(--spacing-large);
+}
+
+.politique-confidentialite h2:hover {
+    color: var(--color-success);
+}
+
+.politique-confidentialite p {
+    margin-bottom: var(--spacing-small);
+}
+
+.politique-confidentialite ul {
+    list-style-type: disc;
+    padding-left: var(--spacing-large);
+}
+
+
+/* Styles spécifiques pour certaines parties */
+.politique-confidentialite p:first-child {
+    font-size: var(--text-large);
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+
+.footer  {
+    color: var(--color-text);
+    margin: var(--spacing-extralarge);
+}
+
+.back-button {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color:var(--color-primary); 
+    color: var(--color-text); 
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px;
+    transition: background-color 1s ease;
+}
+
+.back-button:hover {
+    background-color: var(--color-success); 
+    text-decoration: none;
+}
+
+.margin-footer  {
+    background-color: var(--color-background);
+    height: var(--spacing-extralarge);
+}
+
+
+/**********************************************************************
+------------------------ANIMATION--------------------------
+***********************************************************/
+
+
+
+

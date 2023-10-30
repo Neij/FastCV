@@ -1,0 +1,1038 @@
+/************************************************************************
+ --------------------------COOKIE-CONSENT--------------------------------
+ ************************************************************************/
+/* CSS pour positionner le popup en bas de la page */
+.centered-popup {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0; /* Positionne le popup en bas */
+  margin: auto;
+  width: 100%; /* Ajustez la largeur du popup selon vos besoins */
+  height: 100%; /* La hauteur s'ajustera automatiquement au contenu */
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Style du contenu du popup */
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Style des boutons */
+#accept-cookies,
+#refuse-cookies {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #007bff; /* Couleur de fond bleue */
+  color: #fff; /* Texte en blanc */
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#refuse-cookies {
+  background-color: #dc3545; /* Couleur de fond rouge */
+}
+
+.hidden-popup {
+  display: none;
+}
+
+/************************************************************************
+ --------------------------------HEADER--------------------------------
+ ************************************************************************/
+
+.site-header {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  padding: var(--spacing-large) var(--spacing-none);
+  text-align: center;
+
+  /* @media screen {
+        
+    }*/
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo img {
+  width: 150px;
+}
+
+.strong-title {
+  color: var(--color-success);
+  font-size: var(--text-extralarge);
+}
+.strong-title:hover {
+  color: var(--color-primary);
+}
+
+.strong-title-cv {
+  color: var(--color-primary);
+  font-size: var(--text-extralarge);
+}
+.strong-title-cv:hover {
+  color: var(--color-success);
+}
+
+.header-nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pour les écrans de bureau (au-dessus de 992 pixels) */
+@media screen and (min-width: 992px) {
+  .header-nav ul {
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .header-nav ul li a {
+    font-size: var(--spacing-extralarge);
+  }
+}
+
+.header-nav ul li {
+  margin: var(--spacing-medium);
+}
+
+.header-nav ul li a {
+  position: relative;
+  text-decoration: none;
+  font-size: var(--spacing-large);
+  color: var(--color-text);
+  padding: 5px 10px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  transition: border-color 1s ease-in-out, color 0.6s ease-in-out;
+}
+
+.header-nav ul li a:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+ul li a.disconnect:hover {
+  border-color: var(--color-delete);
+  color: var(--color-delete);
+}
+
+.name-connect {
+  font-size: var(--text-large);
+  color: var(--color-text);
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: var(--color-success);
+}
+
+.column-list {
+  padding: var(--spacing-medium);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--spacing-medium);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.column-list span,
+.column-list a {
+  margin: 5px 0;
+}
+
+nav.header-nav ul li a.active {
+  border: 2px solid var(--color-success);
+  color: var(--color-muted);
+}
+
+main {
+  border: 2px solid var(--color-success);
+  background-color: var(--color-muted);
+}
+
+.site-margin {
+  background-color: var(--color-text);
+  margin: var(--spacing-none) var(--spacing-extralarge);
+  border-radius: var(--spacing-medium);
+}
+
+/************************************************************************
+ ------------------------------HOME------------------------------------
+ ************************************************************************/
+.hero {
+  text-align: center;
+  padding: 100px 0;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.hero h1 {
+  font-size: var(--spacing-extralarge);
+}
+
+.hero p {
+  font-size: var(--spacing-large);
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: var(--color-text);
+  color: var(--color-primary);
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 1s, color 1s;
+}
+
+.cta-button:hover {
+  background-color: var(--color-success);
+  color: var(--color-text);
+}
+
+/* Style des sections de fonctionnalités */
+.features {
+  padding: 60px 0;
+}
+
+.feature {
+  flex-basis: calc(33.33% - 20px);
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.feature h2 {
+  font-size: 24px;
+}
+
+.feature p {
+  font-size: 16px;
+}
+
+/* Style de la section Témoignage */
+.testimonial {
+  text-align: center;
+  padding: 60px 0;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.testimonial blockquote {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.testimonial p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* Style de la section Commencez Maintenant */
+.start-now {
+  text-align: center;
+  padding: 60px 0;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Style de la section À Propos */
+.about {
+  text-align: center;
+  padding: 60px 0;
+  background-color: var(--color-text);
+  color: var(--color-background);
+}
+
+.about-text {
+  text-align: start;
+}
+
+.spacing {
+  margin: 0 20px;
+}
+
+.follow-us {
+  text-align: center;
+  padding: 60px 0;
+  background-color: #3a8dff;
+  color: #fff;
+}
+
+.social-icon {
+  font-size: 36px;
+  margin: 0 15px;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: #f0f0f0;
+}
+
+/* Style des emojis */
+.emoji {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+/************************************************************************
+ ------------------------------CREATE-CV------------------------------------
+ ************************************************************************/
+.create-cv {
+  background-color: var(--color-text);
+  font-family: var(--font-body);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-cv-title {
+  font-size: var(--text-extralarge);
+  color: var(--color-background);
+  text-align: center;
+}
+
+.input-jobs {
+  background-color: var(--color-background);
+  padding: var(--spacing-medium);
+  border-radius: var(--button-border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 50%;
+  text-align: center;
+  margin-top: var(--spacing-medium);
+}
+
+.add-job-button {
+  font-size: var(--spacing-large);
+  margin-top: var(--spacing-medium);
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  padding: var(--button-padding);
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 30%;
+}
+
+.add-job-button:hover {
+  background-color: var(--color-success);
+}
+
+.message {
+  margin: var(--spacing-medium) 0;
+  text-align: center;
+}
+
+.success-message {
+  color: var(--color-success);
+}
+
+.error-message {
+  color: var(--color-delete);
+}
+
+.show-jobs-title {
+  font-size: var(--text-large);
+  color: var(--color-background);
+  margin: var(--spacing-medium) 0;
+  text-align: center;
+}
+
+.create-cv ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.job-item {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  padding: var(--spacing-medium);
+  margin: var(--spacing-small);
+  border-radius: var(--button-border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-right: var(--spacing-medium);
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.job-item:hover {
+  background-color: var(--color-delete);
+}
+
+.create-cv label {
+  font-size: var(--spacing-large);
+  color: var(--color-primary);
+}
+
+.create-cv input[type="text"],
+textarea {
+  font-size: var(--spacing-large);
+  background-color: var(--color-text);
+  color: var(--color-background);
+  border: 1px solid var(--color-muted);
+  border-radius: var(--button-border-radius);
+  padding: var(--spacing-medium);
+  margin: var(--spacing-medium);
+  width: 90%;
+  text-align: center;
+}
+
+/* Hover pour les éléments de formulaire */
+.create-cv input[type="text"]:hover,
+textarea:hover {
+  background-color: var(--color-muted);
+  border: 1px solid var(--color-success);
+}
+
+/* Focus pour les éléments de formulaire */
+.create-cv input[type="text"]:focus,
+textarea:focus {
+  border: 1px solid var(--color-primary);
+}
+
+/* Placeholder pour les éléments de formulaire */
+.create-cv input[type="text"]::placeholder,
+textarea::placeholder {
+  color: var(--color-muted);
+}
+
+.emoji-button {
+  display: inline-block;
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.emoji-button:hover {
+  transform: scale(1.2);
+}
+
+/************************************************************************
+ ------------------------------LOGIN------------------------------------
+ ************************************************************************/
+.input-container {
+  width: 50%; 
+  margin: var(--spacing-none) auto; 
+}
+
+.login {
+  background-color: var(--color-text);
+  border: 3px solid var(--color-primary);
+  border-radius: var(--spacing-medium);
+  padding: var(--spacing-medium);
+  text-align: center;
+}
+
+.login h2 {
+  color: var(--color-primary);
+  font-size: var(--text-extralarge);
+  margin-bottom: var(--spacing-medium);
+}
+
+.login label {
+  font-size: var(--spacing-large);
+  color: var(--color-background);
+  display: block;
+  margin-bottom: var(--spacing-small);
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+  font-size: var(--spacing-large);
+  background-color: var(--color-text);
+  color: var(--color-background);
+  border: 1px solid var(--color-primary);
+  padding: var(--spacing-small);
+  margin: var(--spacing-small) 0;
+  border-radius: var(--spacing-small);
+  width: 100%;
+  text-align: center;
+}
+
+.login input[type="text"]:hover,
+.login input[type="password"]:hover {
+  background-color: var(--color-muted);
+  color: var(--color-text-hover);
+  border-color: var(--color-success);
+  cursor: pointer;
+}
+
+.login input[type="submit"] {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  border: none;
+  padding: var(--button-padding);
+  margin: var(--spacing-medium);
+  border-radius: var(--spacing-small);
+  cursor: pointer;
+  font-size: var(--spacing-large);
+  transition: background-color 0.3s ease;
+}
+
+.login input[type="submit"]:hover {
+  background-color: var(--color-success);
+}
+
+.login .message {
+  text-align: center;
+  margin-top: var(--spacing-medium);
+  padding: var(--spacing-small);
+  font-size: var(--text-medium);
+}
+
+.login .success {
+  color: var(--color-success);
+  font-weight: bold;
+}
+
+.login .error {
+  color: var(--color-delete);
+  font-weight: bold;
+}
+.login p {
+  font-size: var(--spacing-large);
+  color: var(--color-background);
+}
+.login a {
+  font-size: var(--spacing-large);
+  color: var(--color-success);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login a:hover {
+  color: var(--color-primary);
+}
+
+/************************************************************************
+ ------------------------------REGISTER---------------------------------
+ ************************************************************************/
+.register {
+  background-color: var(--color-text);
+  border: 3px solid var(--color-primary);
+  border-radius: var(--spacing-medium);
+  padding: var(--spacing-medium);
+  text-align: center;
+}
+
+.register h2 {
+  color: var(--color-primary);
+  font-size: var(--text-extralarge);
+  margin-bottom: var(--spacing-medium);
+}
+
+.register label {
+  color: var(--color-background);
+  display: block;
+  margin-bottom: var(--spacing-small);
+}
+
+.register input[type="text"],
+.register input[type="email"],
+.register input[type="password"] {
+  background-color: var(--color-text);
+  color: var(--color-background);
+  border: 1px solid var(--color-primary);
+  padding: var(--spacing-small);
+  margin: var(--spacing-small) 0;
+  border-radius: var(--spacing-small);
+  width: 100%;
+  text-align: center; /* Pour centrer le texte */
+  font-size: var(--spacing-large);
+}
+
+.register input[type="text"]:hover,
+.register input[type="email"]:hover,
+.register input[type="password"]:hover {
+  background-color: var(--color-muted);
+  color: var(--color-text-hover);
+  border-color: var(--color-success);
+  cursor: pointer;
+}
+
+.register input[type="submit"] {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  border: none;
+  padding: var(--spacing-small) var(--spacing-medium);
+  margin: var(--spacing-medium) 0;
+  border-radius: var(--spacing-small);
+  cursor: pointer;
+  font-size: var(--text-medium);
+  transition: background-color 0.3s ease;
+}
+
+.register input[type="submit"]:hover {
+  background-color: var(--color-success);
+}
+
+.register .error {
+  color: var(--color-delete);
+  font-weight: bold;
+  font-size: var(--text-medium);
+  margin-top: var(--spacing-small);
+}
+
+.register a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register a:hover {
+  color: var(--color-success);
+}
+
+
+
+/************************************************************************
+ ------------------------------FOOTER------------------------------------
+ ************************************************************************/
+
+.site-footer {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  padding: var(--spacing-medium) var(--spacing-none);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-logo img {
+  width: 150px;
+}
+
+.footer-links ul {
+  list-style-type: none;
+  padding: var(--spacing-none);
+}
+
+.footer-links ul li {
+  margin-bottom: var(--spacing-medium);
+  transition: transform 0.2s ease-in-out;
+}
+
+.footer-links ul li a {
+  font-size: var(--text-large);
+  position: relative;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: var(--text-large);
+  overflow: hidden;
+}
+
+.footer-links ul li a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-success);
+  transition: width 0.3s ease-in-out;
+}
+
+.footer-links ul li a:hover::before {
+  width: 100%;
+}
+.footer-links ul li a:hover {
+  color: var(--color-muted);
+}
+
+.footer-social a {
+  color: var(--color-muted);
+  font-size: var(--spacing-extralarge);
+  margin: var(--spacing-large);
+}
+
+.footer-social a:hover {
+  color: var(--color-primary);
+}
+
+.footer-text {
+  margin: var(--spacing-medium);
+  font-size: var(--text-large);
+}
+
+@media screen and (min-width: 999px) {
+  .footer-links-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .footer-links-container ul {
+    display: flex;
+    list-style-type: none;
+    padding: var(--spacing-none);
+  }
+
+  .footer-links-container ul li {
+    margin-right: var(--spacing-extralarge);
+  }
+}
+
+/************************************************************************
+ ---------------------------POLITIQUE CONFIDENTIALITE------------------
+ ************************************************************************/
+
+.politique-confidentialite {
+  background-color: var(--color-background);
+  font-family: var(--font-body);
+  font-size: var(--text-medium);
+  line-height: 1.6;
+  margin: var(--spacing-none);
+  padding: 0;
+  text-align: center;
+}
+
+.politique-confidentialite .container-politique {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-medium);
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #fafafa;
+  border: 3px solid var(--color-primary); /* Ajout d'un cadre */
+}
+
+.politique-confidentialite h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-extralarge);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-medium);
+  text-align: center;
+}
+
+.politique-confidentialite strong {
+  color: var(--color-primary);
+}
+
+.politique-confidentialite strong:hover {
+  color: var(--color-success);
+}
+
+.politique-confidentialite h2 {
+  color: var(--color-primary);
+  text-align: center;
+  font-size: var(--spacing-large);
+}
+
+.politique-confidentialite h2:hover {
+  color: var(--color-success);
+}
+
+.politique-confidentialite p {
+  margin-bottom: var(--spacing-small);
+}
+
+.politique-confidentialite ul {
+  list-style-type: disc;
+  padding-left: var(--spacing-large);
+}
+
+/* Styles spécifiques pour certaines parties */
+.politique-confidentialite p:first-child {
+  font-size: var(--text-large);
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+}
+
+.footer {
+  color: var(--color-text);
+  margin: var(--spacing-extralarge);
+}
+
+.back-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 10px;
+  transition: background-color 1s ease;
+}
+
+.back-button:hover {
+  background-color: var(--color-success);
+  text-decoration: none;
+}
+
+.margin-footer {
+  background-color: var(--color-background);
+  height: var(--spacing-extralarge);
+}
+
+/************************************************************************
+ ------------------------------L'ART DU CV----------------------------
+ ************************************************************************/
+
+.cv h3 {
+  text-align: center;
+  color: var(--color-primary);
+}
+
+.cv h3:hover {
+  color: var(--color-success);
+}
+
+/* Styles globaux */
+.cv {
+  font-family: var(--font-body, Arial, sans-serif);
+  margin: var(--spacing-none);
+  padding: var(--spacing-extralarge);
+  background-color: var(--color-background);
+  border-radius: var(--button-border-radius);
+}
+
+.header {
+  background-color: var(--color-primary);
+  color: var(--color-text, #fff);
+  text-align: center;
+  padding: var(--spacing-medium) var(--spacing-none);
+}
+
+.content,
+.first,
+.second,
+.third,
+.last {
+  background-color: var(--color-text);
+  margin: var(--spacing-large);
+  padding: var(--spacing-medium) var(--spacing-extralarge);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: var(--spacing-medium);
+  animation: fadeIn 1s ease-in;
+}
+
+ul {
+  list-style: disc;
+  padding-left: var(--spacing-medium);
+}
+
+/* Bouton de retour à l'accueil */
+.back-button {
+  position: fixed;
+  bottom: var(--spacing-medium);
+  right: var(--spacing-medium);
+  display: inline-block;
+  padding: var(--button-padding);
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: var(--button-border-radius);
+  margin: var(--spacing-medium);
+  transition: background-color 1s ease;
+}
+
+.back-button:hover {
+  background-color: var(--color-success);
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fastcv-button {
+  text-align: center;
+}
+
+.create-cv-button {
+  bottom: var(--spacing-medium);
+  right: var(--spacing-medium);
+  display: inline-block;
+  padding: var(--button-padding);
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: var(--button-border-radius);
+  margin: var(--spacing-medium);
+  transition: background-color 1s ease;
+}
+
+.create-cv-button:hover {
+  background-color: var(--color-success);
+}
+
+/* Styles pour le pied de page */
+footer {
+  text-align: center;
+  background-color: var(--color-background);
+  padding: var(--spacing-small) var(--spacing-none);
+}
+
+/* Ajoutez cette classe aux sections que vous souhaitez animer */
+.animated-section {
+  opacity: 0;
+  transform: translateY(var(--spacing-medium));
+  animation: fadeInUp 1s ease-in-out forwards;
+}
+
+/* Animation d'apparition avec décalage séquentiel */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(var(--spacing-medium));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content {
+  animation-delay: var(--animation-delay-1, 0.5s);
+  border: var(--spacing-small) var(--color-success) solid;
+}
+
+.first {
+  animation-delay: var(--animation-delay-2, 1.5s);
+  border: var(--spacing-small) var(--color-muted) solid;
+}
+
+.second {
+  animation-delay: var(--animation-delay-3, 2.5s);
+  border: var(--spacing-small) var(--color-logo) solid;
+}
+
+.third {
+  animation-delay: var(--animation-delay-4, 3.5s);
+  border: var(--spacing-small) var(--color-delete) solid;
+}
+
+.last {
+  animation-delay: var(--animation-delay-4, 4.5s);
+  border: var(--spacing-small) var(--color-success) solid;
+}
+
+.copyright {
+  color: var(--color-text);
+}
+
+.margin-footer {
+  background-color: var(--color-background);
+  height: var(--spacing-extralarge);
+}
+
+/******************************************************
+  -----------------ANIMATION-----------------------
+  *******************************************************/
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--spacing-none);
+}
+
+svg {
+  display: block;
+  font: 8em "Montserrat"; /* Ajustez la taille de police selon vos besoins */
+  width: auto; /* Ajustez la largeur en fonction de la taille du texte */
+  margin: var(
+    --spacing-none
+  ); /* Ajoutez cette ligne pour supprimer les marges */
+}
+
+.text-copy {
+  fill: none;
+  stroke: white;
+  stroke-dasharray: 6% 29%;
+  stroke-width: var(--spacing-small);
+  stroke-dashoffset: 0%;
+  animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1) {
+  stroke: var(--color-success);
+  animation-delay: -1s;
+}
+
+.text-copy:nth-child(2) {
+  stroke: var(--color-primary);
+  animation-delay: -2s;
+}
+
+.text-copy:nth-child(3) {
+  stroke: var(--color-delete);
+  animation-delay: -3s;
+}
+
+.text-copy:nth-child(4) {
+  stroke: var(--color-muted);
+  animation-delay: -4s;
+}
+
+.text-copy:nth-child(5) {
+  stroke: rgb(207, 179, 21);
+  animation-delay: -5s;
+}
+
+@keyframes stroke-offset {
+  100% {
+    stroke-dashoffset: -35%;
+  }
+}

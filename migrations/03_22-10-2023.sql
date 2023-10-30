@@ -1,0 +1,8 @@
+CREATE TABLE jobs (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    title VARCHAR(255) NOT NULL
+) ENGINE=InnoDB
+
+

@@ -19,7 +19,7 @@
     </div>
     <section class="input-jobs">
         <h3>Ajoutez un métier</h3>
-        <form action="index.php?route=create-cv" method="post">
+        <form action="index.php?route=create-job" method="post">
             <input type="hidden" name="csrfToken" value="<?php echo $this->getCsrfToken(); ?>">
             <label for="jobTitle">Titre du métier :</label>
             <input type="text" id="jobTitle" name="jobTitle" required><br>
@@ -75,7 +75,7 @@
     </section>
     <section class="input-educations">
         <h3>Ajoutez une formation</h3>
-        <form action="index.php?route=create-cv" method="post">
+        <form action="index.php?route=create-education" method="post">
             <input type="hidden" name="csrfToken" value="<?php echo $this->getCsrfToken(); ?>">
             <label for="institution">Formation :</label>
             <input type="text" id="institution" name="institution" required><br>
@@ -135,7 +135,7 @@
     </section>
     <section class="input-personal-info">
         <h3>Informations personnelles</h3>
-        <form action="index.php?route=create-cv" method="post">
+        <form action="index.php?route=create-personal-info" method="post">
             <input type="hidden" name="csrfToken" value="<?php echo $this->getCsrfToken(); ?>">
             <label for="firstName">Prénom :</label>
             <input type="text" id="firstName" name="firstName" required><br>

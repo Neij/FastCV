@@ -17,7 +17,7 @@ spl_autoload_register(function ($class) {
 
 SessionManager::startSession();
 
-try {
+try { 
 
     $database = new \Models\Database();
 
@@ -71,7 +71,28 @@ try {
             case 'create-cv':
                 $usersModel = new \Models\Users($database);
                 $controller = new Controllers\CreateCVController($usersModel);
-                $controller->handleRequest();
+                $controller->displayCreateCV();
+                exit;
+                break;
+
+            case 'create-job':
+                $usersModel = new \Models\Users($database);
+                $controller = new Controllers\CreateCVController($usersModel);
+                $controller->createJob();
+                exit;
+                break;
+
+            case 'create-education':
+                $usersModel = new \Models\Users($database);
+                $controller = new Controllers\CreateCVController($usersModel);
+                $controller->createEducation();
+                exit;
+                break;
+
+            case 'create-personal-info':
+                $usersModel = new \Models\Users($database);
+                $controller = new Controllers\CreateCVController($usersModel);
+                $controller->createPersonalInfo();
                 exit;
                 break;
 

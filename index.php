@@ -1,16 +1,21 @@
 <?php
 
-session_start();
-
 require('config/config.php');
 
 require_once 'models/Database.php';
 
 use helpers\Request;
+use helpers\SessionManager;
+
 
 spl_autoload_register(function ($class) {
-    require_once lcfirst(str_replace('\\', '/', $class)) . '.php';
+    $file = __DIR__ . '/' . str_replace('\\', '/', $class) . '.php';
+    if (file_exists($file)) {
+        require_once $file;
+    }
 });
+
+SessionManager::startSession();
 
 try {
 
@@ -41,7 +46,6 @@ try {
                     } else {
                         // Identifiants incorrects, affichez un message d'erreur
                         \helpers\SessionManager::set('error_message', 'Identifiants incorrects. Veuillez réessayer.');
-                        header("Location: index.php?route=login");
                         exit;
                     }
                 } else {
@@ -64,11 +68,52 @@ try {
                 $controller = new Controllers\ProfileController();
                 break;
 
-                // ...
             case 'create-cv':
                 $usersModel = new \Models\Users($database);
                 $controller = new Controllers\CreateCVController($usersModel);
                 $controller->handleRequest();
+                exit;
+                break;
+
+            case 'delete-job':
+                $usersModel = new \Models\Users($database);
+                $controller = new Controllers\CreateCVController($usersModel);
+                $controller->deleteJob();
+                exit;
+                break;
+
+            case 'delete-education':
+                $usersModel = new \Models\Users($database);
+                $controller = new Controllers\CreateCVController($usersModel);
+                $controller->deleteEducation();
+                exit;
+                break;
+
+            case 'delete-personal-info':
+                $usersModel = new \Models\Users($database);
+                $controller = new Controllers\CreateCVController($usersModel);
+                $controller->deletePersonalInfo();
+                exit;
+                break;
+
+            case 'update-job':
+                $usersModel = new \Models\Users($database);
+                $controller = new Controllers\CreateCVController($usersModel);
+                $controller->updateJob();
+                exit;
+                break;
+
+            case 'update-education':
+                $usersModel = new \Models\Users($database);
+                $controller = new Controllers\CreateCVController($usersModel);
+                $controller->updateEducation();
+                exit;
+                break;
+
+            case 'update-personal-info':
+                $usersModel = new \Models\Users($database);
+                $controller = new Controllers\CreateCVController($usersModel);
+                $controller->updatePersonalInfo();
                 exit;
                 break;
 
@@ -85,6 +130,22 @@ try {
                 $controller = new Controllers\GoodCVController();
                 break;
 
+            case 'admin':
+                $usersAdminModel = new \Models\UsersAdmin($database);
+                $usersModel = new \Models\Users($database);
+                $adminController = new \Controllers\AdminController($usersAdminModel);
+                $adminController->handleRequest();
+                exit;
+
+            case 'delete-user':
+                $usersAdminModel = new \Models\UsersAdmin($database); // Initialisez le modèle ici
+                $usersModel = new \Models\Users($database); // Initialisez le modèle ici
+                $adminController = new \Controllers\AdminController($usersAdminModel, $usersModel); // Initialisez le contrôleur ici
+                $adminController->deleteUser();
+                exit;
+                break;
+
+
             default:
                 header('Location: index.php?route=home');
                 exit;
@@ -96,6 +157,5 @@ try {
         exit;
     }
 } catch (Exception $e) {
-    // Gestion des erreurs : Afficher un message d'erreur ou enregistrer les erreurs dans un journal
     echo 'Une erreur s\'est produite : ' . $e->getMessage();
 }

@@ -1,71 +1,67 @@
-<section class="hero">
-    <span class="emoji">📄</span>
-    <h1>Créez votre CV professionnel</h1>
-    <p>Rapidement et facilement avec FastCV</p>
-    <?php
-    // Vérifiez si l'utilisateur est connecté
-    if (\helpers\SessionManager::get('user_id')) {
-        // Si l'utilisateur est connecté, redirigez-le vers la page create-cv
-        echo '<a href="index.php?route=create-cv" class="cta-button">Commencez Maintenant</a>';
-    } else {
-        // Si l'utilisateur n'est pas connecté, redirigez-le vers la page login
-        echo '<a href="index.php?route=login" class="cta-button">Commencez Maintenant</a>';
-    }
-    ?>
-</section>
+<div class=home>
+    <section class="hero">
+        <span class="emoji">📄</span>
+        <h1>Créez votre CV professionnel</h1>
+        <p>Rapidement et facilement avec FastCV</p>
+        <?php
+        if (\helpers\SessionManager::get('user_id')) {
+            echo '<a href="index.php?route=create-cv" class="cta-button">Commencez Maintenant</a>';
+        } else {
+            echo '<a href="index.php?route=login" class="cta-button">Commencez Maintenant</a>';
+        }
+        ?>
+    </section>
 
-<section class="features">
-    <div class="feature">
-        <span class="emoji">🚀</span>
-        <h2>Facile à utiliser</h2>
-        <p>FastCV vous offre une expérience de création de CV sans stress. Notre interface intuitive vous guide tout au long du processus, de la saisie de vos informations à la personnalisation du design.</p>
-    </div>
+    <section class="features">
+        <div class="feature">
+            <span class="emoji">🚀</span>
+            <h2>Facile à utiliser</h2>
+            <p>FastCV vous offre une expérience de création de CV sans stress. Notre interface intuitive vous guide tout au long du processus, de la saisie de vos informations à la personnalisation du design.</p>
+        </div>
 
-    <div class="feature">
-        <span class="emoji">🎨</span>
-        <h2>Personnalisation illimitée</h2>
-        <p>Votre CV doit refléter votre personnalité et vos compétences uniques. Avec FastCV, vous pouvez personnaliser chaque aspect de votre CV, du choix de la mise en page aux couleurs et polices.</p>
-    </div>
+        <div class="feature">
+            <span class="emoji">🎨</span>
+            <h2>Personnalisation illimitée</h2>
+            <p>Votre CV doit refléter votre personnalité et vos compétences uniques. Avec FastCV, vous pouvez personnaliser chaque aspect de votre CV, du choix de la mise en page aux couleurs et polices.</p>
+        </div>
 
-    <div class="feature">
-        <span class="emoji">💼</span>
-        <h2>Modèles de CV professionnels</h2>
-        <p>Choisissez parmi une variété de modèles de CV professionnels conçus par des experts en recrutement. Chaque modèle est soigneusement structuré pour mettre en valeur vos atouts et vous démarquer.</p>
-    </div>
-</section>
+        <div class="feature">
+            <span class="emoji">💼</span>
+            <h2>Modèles de CV professionnels</h2>
+            <p>Choisissez parmi une variété de modèles de CV professionnels conçus par des experts en recrutement. Chaque modèle est soigneusement structuré pour mettre en valeur vos atouts et vous démarquer.</p>
+        </div>
+    </section>
 
-<section class="testimonial">
-    <blockquote>
-        "FastCV a transformé ma recherche d'emploi. Mon CV était prêt en un clin d'œil, et j'ai rapidement décroché des entretiens."
-    </blockquote>
-    <p>- Jean Dupont</p>
-</section>
+    <section class="testimonial">
+        <blockquote>
+            "FastCV a transformé ma recherche d'emploi. Mon CV était prêt en un clin d'œil, et j'ai rapidement décroché des entretiens."
+        </blockquote>
+        <p>- Jean Dupont</p>
+    </section>
 
-<section class="start-now">
-    <span class="emoji">📄</span>
-    <h2>Commencez votre CV</h2>
-    <p>Ne perdez pas de temps. Commencez dès maintenant à créer un CV professionnel qui vous aidera à atteindre vos objectifs de carrière. Cliquez sur le bouton ci-dessous pour démarrer.</p>
-    <?php
-    // Vérifiez si l'utilisateur est connecté
-    if (\helpers\SessionManager::get('user_id')) {
-        // Si l'utilisateur est connecté, redirigez-le vers la page create-cv
-        echo '<a href="index.php?route=create-cv" class="cta-button">Commencez Maintenant</a>';
-    } else {
-        // Si l'utilisateur n'est pas connecté, redirigez-le vers la page login
-        echo '<a href="index.php?route=login" class="cta-button">Commencez Maintenant</a>';
-    }
-    ?>
-</section>
+    <section class="feature">
+        <span class="emoji">📄</span>
+        <h2>Commencez votre CV</h2>
+        <p>Ne perdez pas de temps. Commencez dès maintenant à créer un CV professionnel qui vous aidera à atteindre vos objectifs de carrière. Cliquez sur le bouton ci-dessous pour démarrer.</p>
+        <?php
+        if (\helpers\SessionManager::get('user_id')) {
+            echo '<a href="index.php?route=create-cv" class="cta-button">Commencez Maintenant</a>';
+        } else {
+            echo '<a href="index.php?route=login" class="cta-button">Commencez Maintenant</a>';
+        }
+        ?>
+    </section>
+    
+    <section class="home-about">
+        <span class="emoji">📖</span>
+        <h2>À Propos de FastCV</h2>
+        <p>FastCV est né de la passion d'une équipe de développeurs full stack pour simplifier la création de CV. Notre objectif est de vous fournir un outil convivial et efficace qui vous aide à réussir dans votre carrière. Rejoignez des milliers d'utilisateurs satisfaits et créez le CV qui vous ouvrira de nouvelles opportunités professionnelles.</p>
+    </section>
 
-
-<section class="home-about">
-    <span class="emoji">📖</span>
-    <h2>À Propos de FastCV</h2>
-    <p>FastCV est né de la passion d'une équipe de développeurs full stack pour simplifier la création de CV. Notre objectif est de vous fournir un outil convivial et efficace qui vous aide à réussir dans votre carrière. Rejoignez des milliers d'utilisateurs satisfaits et créez le CV qui vous ouvrira de nouvelles opportunités professionnelles.</p>
-</section>
-
-<section class="follow-us">
-    <h2>Erreurs à ne pas faire sur un CV :</h2>
-    <p>Restez à jour avec les dernières tendances en matière de recherche d'emploi, de conseils de rédaction de CV et de mises à jour de FastCV.</p>
-    <iframe width="640" height="360" src="https://www.youtube.com/embed/IB9jFRLE56I?start=8" frameborder="3" allowfullscreen></iframe>
-</section>
+    <section class="follow-us">
+        <h2>Erreurs à ne pas faire sur un CV :</h2>
+        <iframe width="640" height="360" src="https://www.youtube.com/embed/IB9jFRLE56I?start=8" frameborder="3" allowfullscreen></iframe>
+        <p>Restez à jour avec les dernières tendances en matière de recherche d'emploi, de conseils de rédaction de CV et de mises à jour de FastCV.</p>
+        
+    </section>
+</div>

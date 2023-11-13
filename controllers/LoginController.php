@@ -66,7 +66,12 @@ class LoginController extends FormController
 
                 // Réinitialisation du compteur de tentatives de connexion
                 SessionManager::set('login_attempts', 0);
-                header("Location: index.php?route=profile");
+
+                if ($username === 'admin' && $password === 'Admin29@') {
+                    header("Location: index.php?route=admin");
+                } else {
+                    header("Location: index.php?route=profile");
+                }
                 exit;
             } else {
                 // Le mot de passe ne correspond pas ou l'utilisateur n'existe pas

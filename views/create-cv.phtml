@@ -1,6 +1,24 @@
 <div class="create-cv">
     <h2 class="create-cv-title">Créer un CV</h2>
+    <div class="message">
+        <?php
+        // Afficher les messages
+        $successMessage = \helpers\SessionManager::get('success_message');
+        $errorMessage = \helpers\SessionManager::get('error_message');
+
+        if ($successMessage) {
+            echo '<div class="success-message">' . $successMessage . '</div>';
+            \helpers\SessionManager::remove('success_message');
+        }
+
+        if ($errorMessage) {
+            echo '<div class="error-message">' . $errorMessage . '</div>';
+            \helpers\SessionManager::remove('error_message');
+        }
+        ?>
+    </div>
     <section class="input-jobs">
+        <h3>Ajoutez un métier</h3>
         <form action="index.php?route=create-cv" method="post">
             <input type="hidden" name="csrfToken" value="<?php echo $this->getCsrfToken(); ?>">
             <label for="jobTitle">Titre du métier :</label>
@@ -13,58 +31,173 @@
             <textarea id="jobDescription" name="jobDescription"></textarea><br>
 
             <button type="submit" class="add-job-button">Ajouter le métier</button>
-
-            <div class="message">
-                <?php
-                // Afficher les messages
-                $successMessage = \helpers\SessionManager::get('success_message');
-                $errorMessage = \helpers\SessionManager::get('error_message');
-
-                if ($successMessage) {
-                    echo '<div class="success-message">' . $successMessage . '</div>';
-                    \helpers\SessionManager::remove('success_message');
-                }
-
-                if ($errorMessage) {
-                    echo '<div class="error-message">' . $errorMessage . '</div>';
-                    \helpers\SessionManager::remove('error_message');
-                }
-                ?>
-            </div>
         </form>
     </section>
     <section class="show-jobs">
         <h2 class="show-jobs-title">Métiers ajoutés :</h2>
         <ul>
-            <?php
-            if (!empty($this->viewData['jobs'])) {
-                foreach ($this->viewData['jobs'] as $job) {
-                    // Accédez aux données du métier comme suit :
-                    $jobId = $job['id'];
-                    $jobTitle = $job['title'];
-                    $jobDate = $job['date'];
-                    $jobDescription = $job['description'];
+            <?php if (empty($this->jobs)) : ?>
+                <li class="no-job-add">Aucun métier ajouté.</li>
+            <?php else : ?>
+                <?php foreach ($this->jobs as $job) : ?>
+                    <li class='job-item'>
+                        Titre du métier : <?php echo $job['title']; ?> <br>
+                        Date : <?php echo $job['date']; ?> <br>
+                        Description : <?php echo $job['description']; ?> <br>
 
-                    // Affichez les données du métier dans votre vue comme vous le souhaitez
-                    echo "<li class='job-item'>";
-                    echo "Titre du métier : $jobTitle <br>";
-                    echo "Date : $jobDate <br>";
-                    echo "Description : $jobDescription <br>";
+                        <div class="emoji-button" title="Modifier" onclick="showEditForm('editJobForm<?php echo $job['id']; ?>')">✏️</div>
+                        <!-- Formulaire d'édition (initiallement caché) -->
+                        <div id="editJobForm<?php echo $job['id']; ?>" style="display:none;">
+                            <form action="index.php?route=update-job" method="post">
+                                <input type="hidden" name="jobId" value="<?php echo $job['id']; ?>">
+                                <label for="editJobTitle">Titre du métier :</label>
+                                <input type="text" id="editJobTitle" name="editJobTitle" value="<?php echo $job['title']; ?>" required><br>
 
-                    echo '<div class="emoji-button" title="Modifier"><span class="emoji emoji-pencil">✏️</span></div>'; // Bouton crayon
+                                <label for="editJobDate">Date :</label>
+                                <input type="text" id="editJobDate" name="editJobDate" value="<?php echo $job['date']; ?>" required><br>
 
-                    echo '<form action="index.php?route=create-cv" method="post" style="display:inline;">';
-                    echo '<input type="hidden" name="deleteJobId" value="' . $jobId . '">';
-                    echo '<button type="submit" class="emoji-button" title="Supprimer"><span class="emoji emoji-trash">🗑️</span></button>';
-                    echo '</form>';
+                                <label for="editJobDescription">Description :</label>
+                                <textarea id="editJobDescription" name="editJobDescription" required><?php echo $job['description']; ?></textarea><br>
 
+                                <button type="submit" class="edit-job-button">Valider</button>
+                                <button type="button" class="cancel-edit-button" onclick="hideEditForm('editJobForm<?php echo $job['id']; ?>')">Annuler</button>
+                            </form>
+                        </div>
 
-                    echo "</li>";
-                }
-            } else {
-                echo "Aucun métier ajouté.";
-            }
-            ?>
+                        <form action="index.php?route=delete-job" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="<?php echo $job['id']; ?>">
+                            <button type="submit" class="emoji-button" title="Supprimer"><span class="emoji emoji-trash">🗑️</span></button>
+                        </form>
+                    </li>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </ul>
+    </section>
+    <section class="input-educations">
+        <h3>Ajoutez une formation</h3>
+        <form action="index.php?route=create-cv" method="post">
+            <input type="hidden" name="csrfToken" value="<?php echo $this->getCsrfToken(); ?>">
+            <label for="institution">Formation :</label>
+            <input type="text" id="institution" name="institution" required><br>
+
+            <label for="degree">Diplôme :</label>
+            <input type="text" id="degree" name="degree" required><br>
+
+            <label for="graduationYear">Année :</label>
+            <input type="text" id="graduationYear" name="graduationYear" required><br>
+
+            <button type="submit" class="add-education-button">Ajouter l'éducation</button>
+
+            <!-- Affichage des messages ici comme vous l'avez fait pour les métiers -->
+        </form>
+    </section>
+    <section class="show-educations">
+        <h2 class="show-educations-title">Éducations ajoutées :</h2>
+        <ul>
+            <?php if (empty($this->educations)) : ?>
+                <li class="no-education-add">Aucune éducation ajoutée.</li>
+            <?php else : ?>
+                <?php foreach ($this->educations as $education) : ?>
+                    <li class='education-item'>
+                        Institution : <?php echo $education['institution']; ?> <br>
+                        Diplôme : <?php echo $education['degree']; ?> <br>
+                        Année de diplomation : <?php echo $education['graduation_year']; ?> <br>
+
+                        <!-- Bouton de modification -->
+                        <div class="emoji-button" title="Modifier" onclick="showEditForm('educationForm<?php echo $education['id']; ?>')">✏️</div>
+
+                        <!-- Formulaire de modification (initiallement caché) -->
+                        <div id="educationForm<?php echo $education['id']; ?>" style="display:none;">
+                            <form action="index.php?route=update-education" method="post">
+                                <input type="hidden" name="educationId" value="<?php echo $education['id']; ?>">
+                                <label for="editEducationInstitution">Institution :</label>
+                                <input type="text" id="editEducationInstitution" name="editEducationInstitution" value="<?php echo $education['institution']; ?>" required><br>
+
+                                <label for="editEducationDegree">Diplôme :</label>
+                                <input type="text" id="editEducationDegree" name="editEducationDegree" value="<?php echo $education['degree']; ?>" required><br>
+
+                                <label for="editEducationGraduationYear">Année de diplomation :</label>
+                                <input type="text" id="editEducationGraduationYear" name="editEducationGraduationYear" value="<?php echo $education['graduation_year']; ?>" required><br>
+
+                                <button type="submit" class="edit-education-button">Valider</button>
+                                <button type="button" class="cancel-edit-button" onclick="hideEditForm('educationForm<?php echo $education['id']; ?>')">Annuler</button>
+                            </form>
+                        </div>
+                        <form action="index.php?route=delete-education" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="<?php echo $education['id']; ?>">
+                            <button type="submit" class="emoji-button" title="Supprimer"><span class="emoji emoji-trash">🗑️</span></button>
+                        </form>
+                    </li>
+                <?php endforeach; ?>
+
+            <?php endif; ?>
+        </ul>
+    </section>
+    <section class="input-personal-info">
+        <h3>Informations personnelles</h3>
+        <form action="index.php?route=create-cv" method="post">
+            <input type="hidden" name="csrfToken" value="<?php echo $this->getCsrfToken(); ?>">
+            <label for="firstName">Prénom :</label>
+            <input type="text" id="firstName" name="firstName" required><br>
+
+            <label for="lastName">Nom :</label>
+            <input type="text" id="lastName" name="lastName" required><br>
+
+            <label for="address">Adresse :</label>
+            <input type="text" id="address" name="address" required><br>
+
+            <label for="description">Description :</label>
+            <textarea id="description" name="description"></textarea><br>
+
+            <button type="submit" class="add-personal-info-button">Ajouter les informations personnelles</button>
+        </form>
+    </section>
+    <!-- ... (Votre code existant) ... -->
+
+    <section class="show-personal-info">
+        <h2 class="show-personal-info-title">Informations personnelles :</h2>
+        <ul>
+            <?php if (empty($this->personalInfo)) : ?>
+                <li class="no-personal-info">Aucune information personnelle ajoutée.</li>
+            <?php else : ?>
+                <?php foreach ($this->personalInfo as $personalInfo) : ?>
+                    <li class='personal-info-item'>
+                        Prénom : <?php echo $personalInfo['first_name']; ?> <br>
+                        Nom : <?php echo $personalInfo['last_name']; ?> <br>
+                        Adresse : <?php echo $personalInfo['address']; ?> <br>
+                        Description : <?php echo $personalInfo['description']; ?> <br>
+
+                        <!-- Bouton de modification avec ID dynamique -->
+                        <div class="emoji-button" title="Modifier" onclick="showEditForm('personalInfoForm<?php echo $personalInfo['id']; ?>')">✏️</div>
+
+                        <!-- Formulaire de modification (initialement caché) avec ID dynamique -->
+                        <div id="personalInfoForm<?php echo $personalInfo['id']; ?>" style="display:none;">
+                            <form action="index.php?route=update-personal-info" method="post">
+                                <input type="hidden" name="personalInfoId" value="<?php echo $personalInfo['id']; ?>">
+                                <label for="editFirstName">Prénom :</label>
+                                <input type="text" id="editFirstName" name="editFirstName" value="<?php echo $personalInfo['first_name']; ?>" required><br>
+
+                                <label for="editLastName">Nom :</label>
+                                <input type="text" id="editLastName" name="editLastName" value="<?php echo $personalInfo['last_name']; ?>" required><br>
+
+                                <label for="editAddress">Adresse :</label>
+                                <input type="text" id="editAddress" name="editAddress" value="<?php echo $personalInfo['address']; ?>" required><br>
+
+                                <label for="editDescription">Description :</label>
+                                <textarea id="editDescription" name="editDescription" required><?php echo $personalInfo['description']; ?></textarea><br>
+
+                                <button type="submit" class="edit-personal-info-button">Valider</button>
+                                <button type="button" class="cancel-edit-button" onclick="hideEditForm('personalInfoForm<?php echo $personalInfo['id']; ?>')">Annuler</button>
+                            </form>
+                        </div>
+
+                        <form action="index.php?route=delete-personal-info" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="<?php echo $personalInfo['id']; ?>">
+                            <button type="submit" class="emoji-button" title="Supprimer"><span class="emoji emoji-trash">🗑️</span></button>
+                        </form>
+                    </li>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </ul>
     </section>
 </div>

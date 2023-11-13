@@ -17,7 +17,7 @@ class RegisterController extends FormController
         parent::__construct("register", "register.phtml");
     }
 
-    public function displayRegister($errorMessage = null)
+    public function displayRegister()
     {
         // Génération d'un nouveau jeton CSRF à chaque chargement de la page d'inscription
         $csrfToken = bin2hex(random_bytes(32));

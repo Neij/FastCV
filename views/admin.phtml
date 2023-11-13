@@ -1,0 +1,86 @@
+<section class="admin-page">
+    <header class="admin-header">
+        <div class="admin-container">
+            <h1>Admin Page</h1>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom d'utilisateur</th>
+                    <th>Email</th>
+                    <th>Date de création</th>
+                    <th>Tentative de connexion</th>
+                    <th>Connection échouée</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($usersWithDetails as $row) : ?>
+                    <tr class="admin-infos">
+                        <td><?php echo $row['user_id']; ?></td>
+                        <td class="admin-user-info"><?php echo $row['username']; ?></td>
+                        <td class="admin-user-info"><?php echo $row['email']; ?></td>
+                        <td class="admin-user-info"><?php echo $row['date_creation']; ?></td>
+                        <td class="admin-user-info"><?php echo $row['login_attempts']; ?></td>
+                        <td class="admin-user-info"><?php echo $row['last_failed_login']; ?></td>
+                        <td>
+                            <a href="index.php?route=delete-user&user_id=<?php echo $row['user_id']; ?>" class="user-delete-button">Supprimer</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <h2>Métiers, Éducations, Informations personnelles de <?php echo $row['username']; ?></h2>
+                            <ul class="admin-details">
+                                <li><strong>Métiers :</strong>
+                                    <ul class="admin-jobs">
+                                        <?php if (!empty($row['job_title'])) : ?>
+                                            <li>
+                                                Titre du métier : <?php echo $row['job_title']; ?><br>
+                                                Date : <?php echo $row['job_date']; ?><br>
+                                                Description : <?php echo $row['job_description']; ?><br>
+                                            </li>
+                                        <?php else : ?>
+                                            <li>Aucune information sur les métiers.</li>
+                                        <?php endif; ?>
+                                    </ul>
+                                </li>
+                                <li><strong>Éducations :</strong>
+                                    <ul class="admin-educations">
+                                        <?php if (!empty($row['education_institution'])) : ?>
+                                            <li>
+                                                Titre de l'éducation : <?php echo $row['education_institution']; ?><br>
+                                                Date : <?php echo $row['education_graduation_year']; ?><br>
+                                                Description : <?php echo $row['education_degree']; ?><br>
+                                            </li>
+                                        <?php else : ?>
+                                            <li>Aucune information sur les éducations.</li>
+                                        <?php endif; ?>
+                                    </ul>
+                                </li>
+                                <li><strong>Informations personnelles :</strong>
+                                    <ul class="admin-personal-info">
+                                        <?php if (!empty($row['first_name'])) : ?>
+                                            <li>
+                                                Prénom : <?php echo $row['first_name']; ?><br>
+                                                Nom : <?php echo $row['last_name']; ?><br>
+                                                Adresse : <?php echo $row['address']; ?><br>
+                                                Description : <?php echo $row['description']; ?><br>
+                                            </li>
+                                        <?php else : ?>
+                                            <li>Aucune information personnelle disponible.</li>
+                                        <?php endif; ?>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+

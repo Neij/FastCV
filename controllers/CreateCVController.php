@@ -26,87 +26,44 @@ class CreateCVController extends FormController
         }
     }
 
-    public function handleRequest()
+    public function displayCreateCV()
     {
-        if (Request::isPost()) {
+        $jobs = $this->usersModel->getJobsByUserId($this->userId);
+        $educations = $this->usersModel->getEducationsByUserId($this->userId);
+        $personalInfo = $this->usersModel->getPersonalInfoByUserId($this->userId);
 
-            if ($this->userId) {
+        $this->viewData['jobs'] = $jobs;
+        $this->jobs = $jobs;
 
-                if (isset($_POST['jobTitle']) && isset($_POST['jobDate']) && isset($_POST['jobDescription'])) {
-                    $jobTitle = htmlspecialchars(Request::post("jobTitle"));
-                    $jobDate = htmlspecialchars(Request::post("jobDate"));
-                    $jobDescription = htmlspecialchars(Request::post("jobDescription"));
+        $this->viewData['educations'] = $educations;
+        $this->educations = $educations;
 
-                    if (!empty($jobTitle) && !empty($jobDate) && !empty($jobDescription)) {
-                        $result = $this->usersModel->addJob($this->userId, $jobTitle, $jobDate, $jobDescription);
-
-                        if ($result) {
-                            SessionManager::set('success_message', 'Le métier a été ajouté avec succès.');
-                        } else {
-                            SessionManager::set('error_message', 'Une erreur s\'est produite lors de l\'ajout du métier.');
-                        }
-                    } else {
-                        SessionManager::set('error_message', 'Veuillez remplir tous les champs pour ajouter un métier.');
-                    }
-                } elseif (isset($_POST['institution']) && isset($_POST['degree']) && isset($_POST['graduationYear'])) {
-                    $institution = htmlspecialchars(Request::post("institution"));
-                    $degree = htmlspecialchars(Request::post("degree"));
-                    $graduationYear = htmlspecialchars(Request::post("graduationYear"));
-
-                    if (!empty($institution) && !empty($degree) && !empty($graduationYear)) {
-                        $result = $this->usersModel->addEducation($this->userId, $institution, $degree, $graduationYear);
-
-                        if ($result) {
-                            SessionManager::set('success_message', 'L\'éducation a été ajoutée avec succès.');
-                        } else {
-                            SessionManager::set('error_message', 'Une erreur s\'est produite lors de l\'ajout de l\'éducation.');
-                        }
-                    } else {
-                        SessionManager::set('error_message', 'Veuillez remplir tous les champs pour ajouter une éducation.');
-                    }
-                } elseif (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['address']) && isset($_POST['description'])) {
-                    $firstName = htmlspecialchars(Request::post("firstName"));
-                    $lastName = htmlspecialchars(Request::post("lastName"));
-                    $address = htmlspecialchars(Request::post("address"));
-                    $description = htmlspecialchars(Request::post("description"));
-
-                    if (!empty($firstName) && !empty($lastName) && !empty($address) && !empty($description)) {
-                        $result = $this->usersModel->addPersonalInfo($this->userId, $firstName, $lastName, $address, $description);
-
-                        if ($result) {
-                            SessionManager::set('success_message', 'Les informations personnelles ont été ajoutées avec succès.');
-                        } else {
-                            SessionManager::set('error_message', 'Une erreur s\'est produite lors de l\'ajout des informations personnelles.');
-                        }
-                    } else {
-                        SessionManager::set('error_message', 'Veuillez remplir tous les champs pour ajouter des informations personnelles.');
-                    }
-                }
-
-                header("Location: index.php?route=create-cv");
-                exit;
-            } else {
-                SessionManager::set('error_message', 'Utilisateur introuvable.');
-            }
-        }
-
-        if ($this->userId) {
-            $jobs = $this->usersModel->getJobsByUserId($this->userId);
-            $educations = $this->usersModel->getEducationsByUserId($this->userId);
-            $personalInfo = $this->usersModel->getPersonalInfoByUserId($this->userId);
-
-            $this->viewData['jobs'] = $jobs;
-            $this->jobs = $jobs;
-
-            $this->viewData['educations'] = $educations;
-            $this->educations = $educations;
-
-            $this->viewData['personalInfo'] = $personalInfo;
-            $this->personalInfo = $personalInfo;
-        } else {
-            SessionManager::set('error_message', 'Utilisateur introuvable.');
-        }
+        $this->viewData['personalInfo'] = $personalInfo;
+        $this->personalInfo = $personalInfo;
         $this->displayPage();
+    }
+
+    public function createJob()
+    {
+        $jobTitle = htmlspecialchars(Request::post("jobTitle"));
+        $jobDate = htmlspecialchars(Request::post("jobDate"));
+        $jobDescription = htmlspecialchars(Request::post("jobDescription"));
+
+        if (!empty($jobTitle) && !empty($jobDate) && !empty($jobDescription)) {
+            $result = $this->usersModel->addJob($this->userId, $jobTitle, $jobDate, $jobDescription);
+
+            if ($result) {
+                SessionManager::set('success_message', 'Le métier a été ajouté avec succès.');
+            } else {
+                SessionManager::set('error_message', 'Une erreur s\'est produite lors de l\'ajout du métier.');
+            }
+        } else {
+            SessionManager::set('error_message', 'Veuillez remplir tous les champs pour ajouter un métier.');
+        }
+
+        // Redirigez l'utilisateur vers la page de création de CV
+        header("Location: index.php?route=create-cv");
+        exit;
     }
 
     public function updateJob()
@@ -150,6 +107,29 @@ class CreateCVController extends FormController
         header("Location: index.php?route=create-cv");
     }
 
+    public function createEducation()
+    {
+        $institution = htmlspecialchars(Request::post("institution"));
+        $degree = htmlspecialchars(Request::post("degree"));
+        $graduationYear = htmlspecialchars(Request::post("graduationYear"));
+
+        if (!empty($institution) && !empty($degree) && !empty($graduationYear)) {
+            $result = $this->usersModel->addEducation($this->userId, $institution, $degree, $graduationYear);
+
+            if ($result) {
+                SessionManager::set('success_message', 'L\'éducation a été ajoutée avec succès.');
+            } else {
+                SessionManager::set('error_message', 'Une erreur s\'est produite lors de l\'ajout de l\'éducation.');
+            }
+        } else {
+            SessionManager::set('error_message', 'Veuillez remplir tous les champs pour ajouter une éducation.');
+        }
+
+        // Redirigez l'utilisateur vers la page de création de CV
+        header("Location: index.php?route=create-cv");
+        exit;
+    }
+
     public function updateEducation()
     {
         // Récupérez les données du formulaire de modification
@@ -188,6 +168,30 @@ class CreateCVController extends FormController
         }
 
         header("Location: index.php?route=create-cv");
+    }
+
+    public function createPersonalInfo()
+    {
+        $firstName = htmlspecialchars(Request::post("firstName"));
+        $lastName = htmlspecialchars(Request::post("lastName"));
+        $address = htmlspecialchars(Request::post("address"));
+        $description = htmlspecialchars(Request::post("description"));
+
+        if (!empty($firstName) && !empty($lastName) && !empty($address) && !empty($description)) {
+            $result = $this->usersModel->addPersonalInfo($this->userId, $firstName, $lastName, $address, $description);
+
+            if ($result) {
+                SessionManager::set('success_message', 'Les informations personnelles ont été ajoutées avec succès.');
+            } else {
+                SessionManager::set('error_message', 'Une erreur s\'est produite lors de l\'ajout des informations personnelles.');
+            }
+        } else {
+            SessionManager::set('error_message', 'Veuillez remplir tous les champs pour ajouter des informations personnelles.');
+        }
+
+        // Redirigez l'utilisateur vers la page de création de CV
+        header("Location: index.php?route=create-cv");
+        exit;
     }
 
     public function updatePersonalInfo()

@@ -1,4 +1,36 @@
 /************************************************************************
+ ------------------------------VARIABLES CSS----------------------------
+ ************************************************************************/
+ :root {
+  --color-background: #0A192F;
+  --color-text: #FFFFFF;
+  --color-muted: #B4B4B4;
+  --color-primary: #3A8DFF;
+  --color-success: #38B000;
+  --color-delete: #C70000;
+  --color-logo: rgb(201, 174, 21);
+  
+  --font-heading: 'Arial', sans-serif;
+  --font-body: 'Tahoma', sans-serif;
+  --font-logo: 'Verdana', sans-serif;
+  
+  --text-small: 12px;
+  --text-medium: 16px;
+  --text-large: 20px;
+  --text-extralarge: 40px;
+
+  --spacing-none: 0px;
+  --spacing-small: 5px;
+  --spacing-medium: 10px;
+  --spacing-large: 20px;
+  --spacing-extralarge: 40px;
+
+  --button-padding: 10px 20px;
+  --big-button-padding: 15px 30px;
+  --button-border-radius: 5px;
+}
+
+/************************************************************************
  --------------------------COOKIE-CONSENT--------------------------------
  ************************************************************************/
 
@@ -37,7 +69,7 @@
 }
 
 #refuse-cookies {
-  background-color: var(--color-delete); 
+  background-color: var(--color-delete);
 }
 
 .hidden-popup {
@@ -385,10 +417,11 @@ main {
 }
 
 /************************************************************************
- ------------------------------CREATE-CV------------------------------------
+ ------------------------------CREATE-CV---------------------------------
  ************************************************************************/
+
 .create-cv {
-  background-color: var(--color-text);
+  background-color: var(--color-muted);
   font-family: var(--font-body);
   color: var(--color-text);
   display: flex;
@@ -399,11 +432,17 @@ main {
 
 .create-cv-title {
   font-size: var(--text-extralarge);
-  color: var(--color-background);
+  color: var(--color-primary);
   text-align: center;
+  margin-bottom: var(--spacing-large);
 }
 
-.input-jobs {
+.input-jobs,
+.input-educations,
+.show-jobs,
+.show-educations,
+.input-personal-info,
+.show-personal-info {
   background-color: var(--color-background);
   padding: var(--spacing-medium);
   border-radius: var(--button-border-radius);
@@ -414,8 +453,10 @@ main {
   margin-top: var(--spacing-medium);
 }
 
-.add-job-button {
-  font-size: var(--spacing-large);
+.add-job-button,
+.add-education-button,
+.add-personal-info-button {
+  font-size: var(--text-large);
   margin-top: var(--spacing-medium);
   background-color: var(--color-primary);
   color: var(--color-text);
@@ -424,10 +465,12 @@ main {
   border-radius: var(--button-border-radius);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 30%;
+  width: 50%;
 }
 
-.add-job-button:hover {
+.add-job-button:hover,
+.add-education-button:hover,
+.add-personal-info-button:hover {
   background-color: var(--color-success);
 }
 
@@ -444,14 +487,20 @@ main {
   color: var(--color-delete);
 }
 
-.show-jobs-title {
+.create-cv h3,
+.show-jobs-title,
+.show-educations-title,
+.show-personal-info-title {
   font-size: var(--text-large);
-  color: var(--color-background);
+  color: var(--color-primary);
   margin: var(--spacing-medium) 0;
   text-align: center;
 }
 
-.create-cv ul {
+.create-cv ul,
+.show-jobs ul,
+.show-educations ul,
+.show-personal-info ul {
   list-style-type: none;
   padding: 0;
   display: flex;
@@ -459,7 +508,9 @@ main {
   justify-content: center;
 }
 
-.job-item {
+.job-item,
+.education-item,
+.personal-info-item {
   background-color: var(--color-primary);
   color: var(--color-text);
   padding: var(--spacing-medium);
@@ -469,20 +520,32 @@ main {
   margin-right: var(--spacing-medium);
   text-align: center;
   transition: background-color 0.3s ease;
+  flex: 1 1 calc(30% - var(--spacing-medium));
 }
 
-.job-item:hover {
+.job-item:hover,
+.education-item:hover,
+.personal-info-item:hover {
   background-color: var(--color-delete);
 }
 
-.create-cv label {
-  font-size: var(--spacing-large);
+.create-cv label,
+.show-jobs label,
+.show-educations label,
+.show-personal-info label {
+  font-size: var(--text-large);
   color: var(--color-primary);
 }
 
 .create-cv input[type="text"],
-textarea {
-  font-size: var(--spacing-large);
+.create-cv textarea,
+.show-jobs input[type="text"],
+.show-jobs textarea,
+.show-educations input[type="text"],
+.show-educations textarea,
+.show-personal-info input[type="text"],
+.show-personal-info textarea {
+  font-size: var(--text-medium);
   background-color: var(--color-text);
   color: var(--color-background);
   border: 1px solid var(--color-muted);
@@ -494,18 +557,36 @@ textarea {
 }
 
 .create-cv input[type="text"]:hover,
-textarea:hover {
+.create-cv textarea:hover,
+.show-jobs input[type="text"]:hover,
+.show-jobs textarea:hover,
+.show-educations input[type="text"]:hover,
+.show-educations textarea:hover,
+.show-personal-info input[type="text"]:hover,
+.show-personal-info textarea:hover {
   background-color: var(--color-muted);
   border: 1px solid var(--color-success);
 }
 
 .create-cv input[type="text"]:focus,
-textarea:focus {
+.create-cv textarea:focus,
+.show-jobs input[type="text"]:focus,
+.show-jobs textarea:focus,
+.show-educations input[type="text"]:focus,
+.show-educations textarea:focus,
+.show-personal-info input[type="text"]:focus,
+.show-personal-info textarea:focus {
   border: 1px solid var(--color-primary);
 }
 
 .create-cv input[type="text"]::placeholder,
-textarea::placeholder {
+.create-cv textarea::placeholder,
+.show-jobs input[type="text"]::placeholder,
+.show-jobs textarea::placeholder,
+.show-educations input[type="text"]::placeholder,
+.show-educations textarea::placeholder,
+.show-personal-info input[type="text"]::placeholder,
+.show-personal-info textarea::placeholder {
   color: var(--color-muted);
 }
 
@@ -516,14 +597,13 @@ textarea::placeholder {
   border: none;
   margin: 0;
   padding: 0;
-  font-size: 20px;
-  margin-left: 10px;
+  font-size: var(--text-large);
+  margin-left: var(--spacing-medium);
 }
 
 .emoji-button:hover {
   transform: scale(1.2);
 }
-
 /************************************************************************
  ------------------------------LOGIN------------------------------------
  ************************************************************************/
@@ -894,6 +974,18 @@ textarea::placeholder {
 /************************************************************************
  ------------------------------L'ART DU CV----------------------------
  ************************************************************************/
+.cv {
+  background-color: var(--color-background);
+}
+.cv h2 {
+  font-size: var(--text-large);
+  text-align: center;
+  color: var(--color-primary);
+}
+
+.cv h2:hover {
+  color: var(--color-success);
+}
 
 .cv h3 {
   text-align: center;
@@ -902,21 +994,6 @@ textarea::placeholder {
 
 .cv h3:hover {
   color: var(--color-success);
-}
-
-.cv {
-  font-family: var(--font-body, Arial, sans-serif);
-  margin: var(--spacing-none);
-  padding: var(--spacing-extralarge);
-  background-color: var(--color-background);
-  border-radius: var(--button-border-radius);
-}
-
-.header {
-  background-color: var(--color-primary);
-  color: var(--color-text, #fff);
-  text-align: center;
-  padding: var(--spacing-medium) var(--spacing-none);
 }
 
 .content,
@@ -932,7 +1009,7 @@ textarea::placeholder {
   animation: fadeIn 1s ease-in;
 }
 
-ul {
+.cv ul {
   list-style: disc;
   padding-left: var(--spacing-medium);
 }
@@ -955,7 +1032,6 @@ ul {
   background-color: var(--color-success);
 }
 
-/* Animation d'apparition */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -986,8 +1062,7 @@ ul {
   background-color: var(--color-success);
 }
 
-/* Styles pour le pied de page */
-footer {
+.footer-good-cv {
   text-align: center;
   background-color: var(--color-background);
   padding: var(--spacing-small) var(--spacing-none);
@@ -999,7 +1074,6 @@ footer {
   animation: fadeInUp 1s ease-in-out forwards;
 }
 
-/* Animation d'apparition avec décalage séquentiel */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -1046,8 +1120,8 @@ footer {
 }
 
 /******************************************************
-  -----------------ANIMATION-----------------------
-  *******************************************************/
+-----------------ANIMATION-----------------------
+*******************************************************/
 
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
@@ -1060,11 +1134,9 @@ footer {
 
 svg {
   display: block;
-  font: 8em "Montserrat"; /* Ajustez la taille de police selon vos besoins */
-  width: auto; /* Ajustez la largeur en fonction de la taille du texte */
-  margin: var(
-    --spacing-none
-  ); /* Ajoutez cette ligne pour supprimer les marges */
+  font: 8em "Montserrat";
+  width: auto;
+  margin: var(--spacing-none);
 }
 
 .text-copy {
@@ -1105,4 +1177,100 @@ svg {
   100% {
     stroke-dashoffset: -35%;
   }
+}
+
+/******************************************************
+------------------------ADMIN-----------------------
+*******************************************************/
+
+.admin-page {
+  font-family: var(--font-body);
+  font-size: var(--text-medium);
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-header {
+  background-color: var(--color-primary);
+  padding: var(--spacing-medium);
+  text-align: center;
+}
+
+.admin-header h1 {
+  font-family: var(--font-logo);
+  font-size: var(--text-large);
+  color: var(--color-logo);
+}
+
+.admin-table {
+  width: 100%;
+  margin-top: var(--spacing-medium);
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: var(--spacing-medium);
+  text-align: left;
+  border-bottom: 1px solid var(--color-muted);
+}
+
+.admin-infos {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.admin-user-info {
+  font-weight: bold;
+}
+
+.admin-jobs {
+  list-style: none;
+  padding: var(--spacing-none);
+}
+
+.admin-jobs li {
+  margin-bottom: var(--spacing-medium);
+}
+
+.user-delete-button {
+  display: inline-block;
+  padding: var(--button-padding);
+  background-color: var(--color-delete);
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: var(--button-border-radius);
+  margin-top: var(--spacing-small);
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .admin-header h1 {
+      font-size: var(--text-medium);
+  }
+
+  .admin-table th,
+  .admin-table td {
+      font-size: var(--text-small);
+  }
+
+
+.user-delete-button {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  padding: var(--spacing-small) var(--spacing-medium);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.user-delete-button:hover {
+  background-color: var(--color-delete);
+  transform: scale(1.5);
+}
 }

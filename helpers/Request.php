@@ -18,5 +18,6 @@ class Request
     {
         return isset($_POST[$key]) ? $_POST[$key] : $default;
     }
+    
 }
 

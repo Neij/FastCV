@@ -155,7 +155,7 @@ try {
                 $usersAdminModel = new \Models\UsersAdmin($database);
                 $usersModel = new \Models\Users($database);
                 $adminController = new \Controllers\AdminController($usersAdminModel);
-                $adminController->handleRequest();
+                $adminController->displayPage();
                 exit;
 
             case 'delete-user':

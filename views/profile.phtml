@@ -1,8 +1,20 @@
-<h1>Profil Utilisateur</h1>
-<p>Bienvenue sur votre page de profil.</p>
-<a href="index.php?route=create-cv">Créer un CV</a>
-<a href="logout.php">Se déconnecter</a>
-<a href="index.php?route=edit-profile">Modifier vos informations</a>
+<div class="profile-container">
+    <h1 class="profile-title">Profil Utilisateur</h1>
+    <p class="profile-welcome">Bienvenue sur votre page de profil.</p>
 
+    <div class="profile-actions">
+        <a href="index.php?route=create-cv" class="profile-action-btn">Créer un CV</a>
+        <a href="index.php?route=logout" class="profile-action-btn logout-btn">Se déconnecter</a>
+    </div>
 
+    <div class="profile-cv-section">
+        <h2 class="profile-cv-title">Vos CV</h2>
+        <div class="show-cvs"></div>
+    </div>
 
+    <div class="profile-delete-section">
+        <h2 class="profile-delete-title">Supprimer votre compte</h2>
+        <p class="profile-delete-info">Attention: La suppression du compte est irréversible.</p>
+        <button class="profile-delete-btn">Supprimer mon compte</button>
+    </div>
+</div>

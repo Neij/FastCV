@@ -8,21 +8,20 @@ use Helpers\SessionManager;
 class AdminController extends WebController
 {
     private $usersAdminModel;
-    private $viewData = [];
+    public $usersWithDetails;
 
     public function __construct(UsersAdmin $usersAdminModel)
-    {
-        parent::__construct("views/admin.phtml");
-        $this->usersAdminModel = $usersAdminModel;
-    }
-
-    public function checkAdminAuthorization()
     {
         $username = SessionManager::get('username');
         if ($username !== 'admin') {
             header("Location: index.php?route=login");
             exit;
         }
+        
+        parent::__construct("views/admin.phtml");
+
+        $this->usersAdminModel = $usersAdminModel;
+        $this->usersWithDetails = $this->usersAdminModel->getAllUsersWithDetails();
     }
 
     public function deleteUser()
@@ -39,16 +38,6 @@ class AdminController extends WebController
                 }
             }
         }
-    }
-
-    public function handleRequest()
-    {
-        $this->checkAdminAuthorization();
-        $usersWithDetails = $this->usersAdminModel->getAllUsersWithDetails();
-        $this->viewData['usersWithDetails'] = $usersWithDetails;
-        
-
-        include 'views/layout-web.phtml';
     }
 }
 

@@ -1,19 +1,19 @@
 /************************************************************************
  ------------------------------VARIABLES CSS----------------------------
  ************************************************************************/
- :root {
-  --color-background: #0A192F;
-  --color-text: #FFFFFF;
-  --color-muted: #B4B4B4;
-  --color-primary: #3A8DFF;
-  --color-success: #38B000;
-  --color-delete: #C70000;
+:root {
+  --color-background: #0a192f;
+  --color-text: #ffffff;
+  --color-muted: #b4b4b4;
+  --color-primary: #3a8dff;
+  --color-success: #38b000;
+  --color-delete: #c70000;
   --color-logo: rgb(201, 174, 21);
-  
-  --font-heading: 'Arial', sans-serif;
-  --font-body: 'Tahoma', sans-serif;
-  --font-logo: 'Verdana', sans-serif;
-  
+
+  --font-heading: "Arial", sans-serif;
+  --font-body: "Tahoma", sans-serif;
+  --font-logo: "Verdana", sans-serif;
+
   --text-small: 12px;
   --text-medium: 16px;
   --text-large: 20px;
@@ -79,6 +79,82 @@
 /************************************************************************
  --------------------------------HEADER--------------------------------
  ************************************************************************/
+
+.rotate-on-hover {
+  transition: transform 1s ease-in-out;
+}
+
+.rotate-on-hover:hover {
+  transform: rotate(360deg);
+}
+
+.rev-block {
+  position: relative;
+  display: block; /* Assure que chaque <p> est un bloc */
+  font-size: 24px; /* Choisir la taille de police que tu préfères */
+  margin-bottom: 10px; /* Espacement entre les phrases */
+}
+
+.rev-block .custom-span {
+  display: block; 
+}
+
+.rev-block:after {
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 0;
+  height: 125%;
+}
+
+.rev-block:after {
+  background: var(--color-success); 
+  animation: rev-block-left 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards;
+  animation-delay: 0.5s; 
+}
+
+.rev-block.reverse:after {
+  background: var(
+    --color-primary
+  ); 
+  animation: rev-block-right 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards;
+  animation-delay: 1s; 
+}
+
+@keyframes rev-block-left {
+  0% {
+    left: 8%;
+    width: 0%;
+  }
+  50% {
+    left: 8%;
+    width: 90%;
+  }
+  100% {
+    left: 92%;
+    width: 0%;
+  }
+}
+
+@keyframes rev-block-right {
+  0% {
+    left: 100%;
+    width: 0%;
+  }
+  50% {
+    left: 0;
+    width: 100%;
+  }
+  100% {
+    left: 0;
+    width: 0%;
+  }
+}
+
+.header-title-description {
+  margin-bottom: var(--spacing-extralarge);
+}
 
 .site-header {
   background-color: var(--color-background);
@@ -315,7 +391,7 @@ main {
 }
 
 .custom-heading h2 {
-  color: #fff;
+  color: var(--color-text);
   font-family: Avenir Next, Helvetica Neue, Helvetica, Tahoma, sans-serif;
   font-size: 1em;
   font-weight: 700;
@@ -324,7 +400,9 @@ main {
   letter-spacing: calc(100em / 1000);
   border: solid 3px var(--color-background);
   border-radius: var(--spacing-small);
-  padding: 50px var(--spacing-large) var(--spacing-medium) var(--spacing-large);
+  padding: var(--spacing-extralarge) var(--spacing-large) var(--spacing-large)
+    var(--spacing-large);
+  margin-bottom: var(--spacing-extralarge);
 }
 
 .custom-heading h2 span {
@@ -401,21 +479,113 @@ main {
   }
 }
 
+
+.section-photos {
+  background-color: var(--color-primary);
+  transition: background-color 4s ease; 
+}
+
+.section-photos:hover {
+  animation: colorChange 12s infinite; 
+}
+
+@keyframes colorChange {
+  0% {
+    background-color: var(--color-primary);
+  }
+  15% {
+    background-color: var(--color-success);
+  }
+  30% {
+    background-color: var(--color-background);
+  }
+  45% {
+    background-color: var(--color-primary);
+  }
+  60% {
+    background-color: var(--color-success);
+  }
+  75% {
+    background-color: var(--color-background);
+  }
+  90% {
+    background-color: var(--color-primary);
+  }
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--spacing-extralarge);
+}
+
+.gallery ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* animation */
+.gallery ul li,
+.gallery li img {
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+.gallery ul li img {
+  border: 1px solid var(--color-muted);
+  padding: 5px;
+  width: 175px;
+  height: 175px;
+  background: var(--color-text);
+  margin: auto;
+  
+}
+
+.gallery ul li:hover img {
+  transform: scale(1.2); 
+}
+
+.gallery ul li {
+  margin: var(--spacing-large);
+}
+
+@media only screen and (min-width: 1000px) {
+  .gallery ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .gallery ul li {
+    flex: 0 0 20%; 
+    margin: 10px; 
+  }
+}
+
 .about {
   text-align: center;
-  padding: 60px 0;
   background-color: var(--color-text);
   color: var(--color-background);
 }
 
 .about-text {
-  text-align: start;
+  border: var(--color-primary) 4px solid;
+  text-align: center;
+  font-size: var(--spacing-large);
+  border-radius: var(--button-border-radius);
 }
 
-.spacing {
-  margin: 0 20px;
+.about-text:hover {
+  border: var(--color-success) 4px solid;
 }
 
+.about section {
+  padding: var(--spacing-large);
+}
 /************************************************************************
  ------------------------------CREATE-CV---------------------------------
  ************************************************************************/
@@ -597,13 +767,88 @@ main {
   border: none;
   margin: 0;
   padding: 0;
-  font-size: var(--text-large);
+  font-size: var(--text-extralarge);
   margin-left: var(--spacing-medium);
 }
 
 .emoji-button:hover {
   transform: scale(1.2);
 }
+
+/************************************************************************
+ ------------------------------PROFIL------------------------------------
+ ************************************************************************/
+
+.profile-container {
+  background-color: var(--color-text);
+  color: var(--color-background);
+  padding: var(--spacing-large);
+  font-family: var(--font-body);
+  text-align: center;
+}
+
+.profile-title {
+  font-size: var(--text-large);
+}
+
+.profile-welcome {
+  font-size: var(--text-medium);
+  color: var(--color-primary);
+}
+
+.profile-actions {
+  margin-top: var(--spacing-large);
+}
+
+.profile-action-btn {
+  display: inline-block;
+  padding: var(--button-padding);
+  border-radius: var(--button-border-radius);
+  margin-right: var(--spacing-medium);
+  text-decoration: none;
+  color: var(--color-text);
+  background-color: var(--color-primary);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.profile-action-btn:hover {
+  background-color: var(--color-success);
+}
+
+.logout-btn {
+  background-color: var(--color-delete);
+}
+
+.profile-cv-section,
+.profile-delete-section {
+  margin-top: var(--spacing-large);
+}
+
+.profile-cv-title,
+.profile-delete-title {
+  font-size: var(--text-large);
+}
+.show-cvs {
+  border: solid var(--color-background) 2px;
+}
+
+.profile-delete-info {
+  font-size: var(--text-medium);
+  color: var(--color-delete);
+}
+
+.profile-delete-btn {
+  padding: var(--button-padding);
+  border-radius: var(--button-border-radius);
+  background-color: var(--color-delete);
+  color: var(--color-text);
+  transition: transform 0.3s ease-in-out;
+}
+
+.profile-delete-btn:hover {
+  transform: scale(0.9);
+}
+
 /************************************************************************
  ------------------------------LOGIN------------------------------------
  ************************************************************************/
@@ -1119,6 +1364,24 @@ main {
   height: var(--spacing-extralarge);
 }
 
+.back-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 10px;
+  transition: background-color 1s ease;
+}
+
+.back-button:hover {
+  background-color: var(--color-success);
+  text-decoration: none;
+}
 /******************************************************
 -----------------ANIMATION-----------------------
 *******************************************************/
@@ -1251,26 +1514,25 @@ svg {
 /* Responsive Styles */
 @media (max-width: 600px) {
   .admin-header h1 {
-      font-size: var(--text-medium);
+    font-size: var(--text-medium);
   }
 
   .admin-table th,
   .admin-table td {
-      font-size: var(--text-small);
+    font-size: var(--text-small);
   }
 
+  .user-delete-button {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    padding: var(--spacing-small) var(--spacing-medium);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
 
-.user-delete-button {
-  background-color: var(--color-primary);
-  color: var(--color-text);
-  padding: var(--spacing-small) var(--spacing-medium);
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.user-delete-button:hover {
-  background-color: var(--color-delete);
-  transform: scale(1.5);
-}
+  .user-delete-button:hover {
+    background-color: var(--color-delete);
+    transform: scale(1.5);
+  }
 }

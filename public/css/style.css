@@ -96,7 +96,7 @@
 }
 
 .rev-block .custom-span {
-  display: block; 
+  display: block;
 }
 
 .rev-block:after {
@@ -109,17 +109,15 @@
 }
 
 .rev-block:after {
-  background: var(--color-success); 
+  background: var(--color-success);
   animation: rev-block-left 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards;
-  animation-delay: 0.5s; 
+  animation-delay: 0.5s;
 }
 
 .rev-block.reverse:after {
-  background: var(
-    --color-primary
-  ); 
+  background: var(--color-primary);
   animation: rev-block-right 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards;
-  animation-delay: 1s; 
+  animation-delay: 1s;
 }
 
 @keyframes rev-block-left {
@@ -285,6 +283,33 @@ main {
 /************************************************************************
  ------------------------------HOME------------------------------------
  ************************************************************************/
+/* Ajoutez ces styles dans votre fichier CSS ou dans la balise style de votre fichier HTML */
+
+.slick-center {
+  transform: scale(1.2); /* Ajustez le facteur d'échelle selon vos besoins */
+  transition: transform 0.3s ease;
+}
+
+.your-carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item {
+  text-align: center; /* Assurez-vous que le texte est centré */
+}
+
+.carousel-item img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  margin: 0 auto; /* Centre l'image horizontalement */
+}
+
+
+
 .emoji {
   font-size: 36px;
   margin-bottom: 10px;
@@ -479,14 +504,13 @@ main {
   }
 }
 
-
 .section-photos {
   background-color: var(--color-primary);
-  transition: background-color 4s ease; 
+  transition: background-color 4s ease;
 }
 
 .section-photos:hover {
-  animation: colorChange 12s infinite; 
+  animation: colorChange 12s infinite;
 }
 
 @keyframes colorChange {
@@ -513,11 +537,18 @@ main {
   }
 }
 
+.section-photos h3 {
+  color: var(--color-text);
+  font-size: var(--spacing-extralarge);
+  text-decoration: underline;
+}
+
 .gallery {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: var(--spacing-extralarge);
+  position: relative;
 }
 
 .gallery ul {
@@ -542,11 +573,12 @@ main {
   height: 175px;
   background: var(--color-text);
   margin: auto;
-  
 }
 
 .gallery ul li:hover img {
-  transform: scale(1.2); 
+  transform: scale(1.2);
+  background: var(--color-background);
+  border: 1px solid var(--color-background);
 }
 
 .gallery ul li {
@@ -561,9 +593,64 @@ main {
   }
 
   .gallery ul li {
-    flex: 0 0 20%; 
-    margin: 10px; 
+    flex: 0 0 20%;
+    margin: 10px;
   }
+}
+.gallery li {
+  position: relative;
+  display: inline-block;
+  margin: var(--spacing-large);
+}
+
+.gallery li a {
+  display: block;
+  position: relative;
+}
+
+.gallery li img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-muted);
+  padding: 5px;
+  background: var(--color-text);
+  margin: auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.gallery ul li {
+  position: relative;
+  margin: var(--spacing-large);
+}
+
+.gallery li .overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centrage absolu */
+  width: 60%; /* Ajustez la largeur du filtre par rapport à l'image */
+  height: 100%; /* Ajustez la hauteur du filtre par rapport à l'image */
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: var(--spacing-large);
+}
+
+.gallery li .overlay h4 {
+  margin: 0;
+}
+
+.gallery li:hover .overlay {
+  opacity: 1;
 }
 
 .about {
@@ -602,9 +689,38 @@ main {
 
 .create-cv-title {
   font-size: var(--text-extralarge);
-  color: var(--color-primary);
+  color: var(--color-background);
   text-align: center;
+  text-decoration: underline;
   margin-bottom: var(--spacing-large);
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  border-right: 2px solid;
+}
+
+.create-cv-title::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  border-right: 2px solid;
+  animation: typing 3s steps(22, end), blink 0.5s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
 }
 
 .input-jobs,
@@ -1241,6 +1357,14 @@ main {
   color: var(--color-success);
 }
 
+.cv img {
+  display: block;
+  margin: 0 auto;
+  width: 300px;
+  height: 300px;
+  border: solid 1px var(--color-background);
+}
+
 .content,
 .first,
 .second,
@@ -1385,8 +1509,6 @@ main {
 /******************************************************
 -----------------ANIMATION-----------------------
 *******************************************************/
-
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 .container {
   display: flex;

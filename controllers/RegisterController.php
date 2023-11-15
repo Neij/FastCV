@@ -27,7 +27,6 @@ class RegisterController extends FormController
         $this->displayPage();
     }
 
-
     public function registerUser()
     {
         if (Request::isPost()) {
@@ -55,8 +54,15 @@ class RegisterController extends FormController
                         return;
                     }
 
+                    // Vérifier si le nom d'utilisateur est déjà pris
+                    if ($this->registerModel->isUsernameTaken($username)) {
+                        $this->errorMessage = "Échec de l'inscription : le nom d'utilisateur est déjà pris. Veuillez en choisir un autre.";
+                        $this->displayRegister();
+                        return;
+                    }
+
                     // Validation du mot de passe
-                    if (strlen($password) < 8 || !preg_match('/^(?=.*[a-zéèêàâ])(?=.*[A-ZÉÈÊÀÂ])(?=.*\d)(?=.*[@#$%^&+=!])/', $password)                    ) {
+                    if (strlen($password) < 8 || !preg_match('/^(?=.*[a-zéèêàâ])(?=.*[A-ZÉÈÊÀÂ])(?=.*\d)(?=.*[@#$%^&+=!])/', $password)) {
                         $this->errorMessage = "Échec de l'inscription : le mot de passe doit comporter au moins 8 caractères et inclure des lettres majuscules, des lettres minuscules, des chiffres et des caractères spéciaux.";
                         $this->displayRegister();
                         return;
@@ -98,3 +104,4 @@ class RegisterController extends FormController
         }
     }
 }
+

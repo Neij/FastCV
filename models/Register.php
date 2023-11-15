@@ -18,4 +18,11 @@ class Register {
         $params = [$username, $hashedPassword, $email, $currentDateTime];
         return $this->db->execute($sql, $params);
     }
+
+    public function isUsernameTaken($username) {
+        $sql = "SELECT COUNT(*) FROM users WHERE username = ?";
+        $params = [$username];
+        $count = $this->db->fetchColumn($sql, $params);
+        return $count > 0;
+    }
 }

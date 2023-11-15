@@ -17,7 +17,7 @@ spl_autoload_register(function ($class) {
 
 SessionManager::startSession();
 
-try { 
+try {
 
     $database = new \Models\Database();
 
@@ -65,7 +65,8 @@ try {
                 break;
 
             case 'profile':
-                $controller = new Controllers\ProfileController();
+                $usersAdminModel = new \Models\UsersAdmin($database);
+                $controller = new Controllers\ProfileController($usersAdminModel);
                 break;
 
             case 'create-cv':
@@ -139,7 +140,7 @@ try {
                 break;
 
             case 'logout':
-                session_destroy();
+                SessionManager::destroy();
                 header("Location: index.php?route=home");
                 exit;
 
@@ -159,13 +160,19 @@ try {
                 exit;
 
             case 'delete-user':
-                $usersAdminModel = new \Models\UsersAdmin($database); // Initialisez le modèle ici
-                $usersModel = new \Models\Users($database); // Initialisez le modèle ici
-                $adminController = new \Controllers\AdminController($usersAdminModel, $usersModel); // Initialisez le contrôleur ici
+                $usersAdminModel = new \Models\UsersAdmin($database);
+                $usersModel = new \Models\Users($database);
+                $adminController = new \Controllers\AdminController($usersAdminModel, $usersModel);
                 $adminController->deleteUser();
                 exit;
                 break;
 
+            case 'delete-account':
+                $usersAdminModel = new \Models\UsersAdmin($database);
+                $profileController = new \Controllers\ProfileController($usersAdminModel);
+                $profileController->deleteAccount();
+                exit;
+                break;
 
             default:
                 header('Location: index.php?route=home');

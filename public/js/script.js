@@ -1,9 +1,35 @@
+/********************************************************
+ ------------------------CAROUSEL---------------------------
+ **********************************************************/
+
+ $(document).ready(function(){
+  $('.your-carousel-container').slick({
+    autoplay: true,
+    autoplaySpeed: 3000,
+    dots: true,
+    slidesToShow: 1, // Afficher un seul élément à la fois
+    slidesToScroll: 1,
+  });
+});
+
+
+/********************************************************
+ ----------AFFICHER FORMULAIRE UPDATE--------------------
+ **********************************************************/
+
+
 function showEditForm(formId) {
-  document.getElementById(formId).style.display = 'block';
+  const form = document.getElementById(formId);
+  if (form) {
+    form.style.display = 'block';
+  }
 }
 
 function hideEditForm(formId) {
-  document.getElementById(formId).style.display = 'none';
+  const form = document.getElementById(formId);
+  if (form) {
+    form.style.display = 'none';
+  }
 }
 
 /********************************************************
@@ -19,19 +45,23 @@ document.addEventListener("DOMContentLoaded", function () {
     "toggleConfirmPassword"
   );
 
-  togglePasswordButton.addEventListener("click", function () {
-    togglePasswordVisibility(
-      passwordInput,
-      togglePasswordButton
-    );
-  });
+  if (togglePasswordButton) {
+    togglePasswordButton.addEventListener("click", function () {
+      togglePasswordVisibility(
+        passwordInput,
+        togglePasswordButton
+      );
+    });
+  }
 
-  toggleConfirmPasswordButton.addEventListener("click", function () {
-    togglePasswordVisibility(
-      confirmPasswordInput,
-      toggleConfirmPasswordButton
-    );
-  });
+  if (toggleConfirmPasswordButton) {
+    toggleConfirmPasswordButton.addEventListener("click", function () {
+      togglePasswordVisibility(
+        confirmPasswordInput,
+        toggleConfirmPasswordButton
+      );
+    });
+  }
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -40,19 +70,77 @@ document.addEventListener("DOMContentLoaded", function () {
     "toggleLoginPassword"
   );
 
-  toggleLoginPasswordButton.addEventListener("click", function () {
-    togglePasswordVisibility(passwordInput, toggleLoginPasswordButton);
-  });
+  if (toggleLoginPasswordButton) {
+    toggleLoginPasswordButton.addEventListener("click", function () {
+      togglePasswordVisibility(passwordInput, toggleLoginPasswordButton);
+    });
+  }
 });
 
 function togglePasswordVisibility(passwordInput, toggleButton) {
-  if (passwordInput.type === "password") {
-    // Affiche le mot de passe en clair
-    passwordInput.type = "text";
-    toggleButton.textContent = "🙈";
-  } else {
-    // Masque le mot de passe
-    passwordInput.type = "password";
-    toggleButton.textContent = "👀";
+  if (passwordInput && toggleButton) {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      toggleButton.textContent = "🙈";
+    } else {
+      passwordInput.type = "password";
+      toggleButton.textContent = "👀";
+    }
   }
 }
+
+/********************************************************
+ ----------------------COOKIES------------------------
+ **********************************************************/
+
+
+function checkConsentCookie() {
+  const consentCookie = getCookie("consent_cookie");
+  const popup = document.getElementById("cookie-consent-popup");
+
+  if (consentCookie === "accepted") {
+      popup.classList.add("hidden-popup");
+  } else if (consentCookie !== "refused") {
+      popup.classList.remove("hidden-popup");
+  }
+}
+
+function getCookie(name) {
+  const cookieName = name + "=";
+  const cookieArray = document.cookie.split(";");
+
+  for (let i = 0; i < cookieArray.length; i++) {
+    let cookie = cookieArray[i];
+    while (cookie.charAt(0) === " ") {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(cookieName) === 0) {
+      return cookie.substring(cookieName.length, cookie.length);
+    }
+  }
+  return "";
+}
+
+function hideCookiePopup() {
+  document.getElementById("cookie-consent-popup").style.display = "none";
+
+  const consentCookieValue =
+    this.id === "accept-cookies" ? "accepted" : "refused";
+  document.cookie =
+    "consent_cookie=" +
+    consentCookieValue +
+    "; expires=Sun, 31 Dec 2034 23:59:59 UTC; path=/";
+}
+
+document
+  .getElementById("accept-cookies")
+  .addEventListener("click", hideCookiePopup);
+
+document
+  .getElementById("refuse-cookies")
+  .addEventListener("click", hideCookiePopup);
+
+checkConsentCookie();
+
+
+

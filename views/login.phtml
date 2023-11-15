@@ -3,7 +3,7 @@
     <form class="input-container" action="index.php?route=login" method="POST">
         <input type="hidden" name="csrfToken" value="<?php echo $this->getCsrfToken(); ?>">
         <label for="username">Nom d'utilisateur :</label>
-        <input type="text" name="username" id="username" required>
+        <input type="text" name="username" id="username" required autocomplete="username">
         <label for="password">Mot de passe :</label>
         <input type="password" name="password" id="password" required>
         <button type="button" id="toggleLoginPassword">👀</button>

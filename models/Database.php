@@ -23,6 +23,12 @@ class Database {
         return $statement->fetchAll(); // Utilisation du FETCH_ASSOC par défaut
     }
     
+    public function fetchColumn($sql, $params = []) {
+        $statement = $this->prepare($sql);
+        $statement->execute($params);
+        return $statement->fetchColumn();
+    }
+    
     public function getLastInsertId() {
         return $this->bdd->lastInsertId();
     }

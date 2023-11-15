@@ -11,12 +11,24 @@ class UsersAdmin
         $this->db = $db;
     }
 
-    public function deleteUserWithJobs($userId)
+    public function deleteUserWithAllInfos($userId)
     {
+        // Supprimez les emplois liés à l'utilisateur
         $sqlDeleteJobs = "DELETE FROM jobs WHERE user_id = ?";
         $paramsDeleteJobs = [$userId];
         $this->db->execute($sqlDeleteJobs, $paramsDeleteJobs);
 
+        // Supprimez les éducations liées à l'utilisateur
+        $sqlDeleteEducations = "DELETE FROM educations WHERE user_id = ?";
+        $paramsDeleteEducations = [$userId];
+        $this->db->execute($sqlDeleteEducations, $paramsDeleteEducations);
+
+        // Supprimez les informations personnelles liées à l'utilisateur
+        $sqlDeletePersonalInfo = "DELETE FROM personal_info WHERE user_id = ?";
+        $paramsDeletePersonalInfo = [$userId];
+        $this->db->execute($sqlDeletePersonalInfo, $paramsDeletePersonalInfo);
+
+        // Supprimez l'utilisateur lui-même
         $sqlDeleteUser = "DELETE FROM users WHERE id = ?";
         $paramsDeleteUser = [$userId];
         return $this->db->execute($sqlDeleteUser, $paramsDeleteUser);
@@ -37,4 +49,5 @@ class UsersAdmin
         return $this->db->fetchAll($sql);
     }
 }
+
 

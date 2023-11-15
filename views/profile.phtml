@@ -8,13 +8,14 @@
     </div>
 
     <div class="profile-cv-section">
-        <h2 class="profile-cv-title">Vos CV</h2>
+        <h2 class="profile-cv-title">Vos CVs</h2>
         <div class="show-cvs"></div>
     </div>
-
     <div class="profile-delete-section">
         <h2 class="profile-delete-title">Supprimer votre compte</h2>
         <p class="profile-delete-info">Attention: La suppression du compte est irréversible.</p>
-        <button class="profile-delete-btn">Supprimer mon compte</button>
+        <form action="index.php?route=delete-account" method="post">
+            <button type="submit" class="profile-delete-btn" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte? Cette action est irréversible.');">Supprimer mon compte</button>
+        </form>
     </div>
 </div>

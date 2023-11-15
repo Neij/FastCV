@@ -30,7 +30,7 @@ class AdminController extends WebController
             $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : '';
 
             if (!empty($user_id)) {
-                $success = $this->usersAdminModel->deleteUserWithJobs($user_id);
+                $success = $this->usersAdminModel->deleteUserWithAllInfos($user_id);
 
                 if ($success) {
                     header("Location: index.php?route=admin");

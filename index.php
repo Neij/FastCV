@@ -36,15 +36,12 @@ try {
                 $usersModel = new \Models\Users($database);
                 $controller = new Controllers\LoginController($usersModel);
                 if (Request::isPost()) {
-                    $user = $controller->loginUser(); // Appel de la méthode loginUser() qui retourne l'utilisateur s'il est authentifié
+                    $user = $controller->loginUser(); 
                     if ($user) {
-                        // L'utilisateur est connecté avec succès, stockez l'ID de l'utilisateur dans la session
                         \helpers\SessionManager::set('user_id', $user['id']);
-                        // Redirigez l'utilisateur vers la page de profil
                         header("Location: index.php?route=profile");
                         exit;
                     } else {
-                        // Identifiants incorrects, affichez un message d'erreur
                         \helpers\SessionManager::set('error_message', 'Identifiants incorrects. Veuillez réessayer.');
                         exit;
                     }

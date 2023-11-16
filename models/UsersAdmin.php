@@ -48,6 +48,7 @@ class UsersAdmin
 
         return $this->db->fetchAll($sql);
     }
+
 }
 
 

@@ -11,7 +11,8 @@ class Users
         $this->db = $db;
     }
 
-    public function createUser($username, $hashedPassword, $email) {
+    public function createUser($username, $hashedPassword, $email)
+    {
         // Obtenir la date et l'heure actuelles
         $currentDateTime = date("Y-m-d H:i:s");
 
@@ -20,7 +21,7 @@ class Users
         $params = [$username, $hashedPassword, $email, $currentDateTime];
         return $this->db->execute($sql, $params);
     }
-    
+
     public function addJob($userId, $jobTitle, $jobDate, $jobDescription)
     {
         $sql = "INSERT INTO jobs (user_id, title, date, description) VALUES (?, ?, ?, ?)";
@@ -99,14 +100,13 @@ class Users
         $params = [$firstName, $lastName, $address, $description, $personalInfoId, $userId];
         return $this->db->execute($sql, $params);
     }
-    
+
     public function deletePersonalInfo($personalInfoId, $userId)
     {
         $sql = "DELETE FROM personal_info WHERE id = ? AND user_id = ?";
         $params = [$personalInfoId, $userId];
         return $this->db->execute($sql, $params);
     }
-
 
     public function getUserByUsername($username)
     {
@@ -150,4 +150,5 @@ class Users
         $params = [$currentAttempts, $username];
         return $this->db->execute($sql, $params);
     }
+ 
 }

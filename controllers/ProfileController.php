@@ -5,6 +5,7 @@
 namespace Controllers;
 
 use Models\UsersAdmin;
+use Helpers\SessionManager;
 
 class ProfileController extends AppController
 {
@@ -25,6 +26,7 @@ class ProfileController extends AppController
         $success = $this->usersAdminModel->deleteUserWithAllInfos($userId);
 
         if ($success) {
+
             // Déconnectez l'utilisateur
             \helpers\SessionManager::destroy();
 
@@ -39,6 +41,3 @@ class ProfileController extends AppController
 
     // ... (autres méthodes)
 }
-
-
-

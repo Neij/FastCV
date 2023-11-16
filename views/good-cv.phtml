@@ -24,7 +24,7 @@
         <a href="#section1"><img src="public/img/bonCv.jpg" alt="Image illustrant deux CVs, un appartenant à James Bond, l'autre à Arnold Schwarznegger"></a>
         <p>Un bon CV est bien plus qu'une simple liste de compétences et d'expériences. Il s'agit de votre première chance de faire une impression positive sur un employeur potentiel et de vous démarquer parmi les candidats. Voici quelques éléments clés d'un bon CV :</p>
         <ul>
-            
+
             <li>Information personnelle : Incluez vos coordonnées, y compris votre nom, numéro de téléphone, adresse e-mail et, éventuellement, votre adresse.</li>
             <li>Objectif ou résumé : Un bref paragraphe qui résume vos objectifs professionnels et votre valeur en tant que candidat.</li>
             <li>Expérience professionnelle : Énumérez vos expériences de travail passées, en mettant l'accent sur les réalisations et les responsabilités pertinentes.</li>
@@ -90,7 +90,11 @@
         <p>En choisissant FASTCV, vous investissez dans votre avenir professionnel. Nous sommes fiers de jouer un rôle dans le parcours de nombreux candidats qui ont obtenu des entretiens et des offres d'emploi grâce à des CV de qualité créés sur notre site. Rejoignez la communauté des utilisateurs satisfaits de FASTCV et donnez un coup de pouce à votre carrière dès aujourd'hui.</p>
         <p>Nous croyons fermement que tout le monde mérite de trouver un emploi qui les passionne. Avec FASTCV, vous avez l'outil pour y parvenir. N'hésitez pas à commencer dès maintenant en créant votre CV de qualité supérieure sur notre site. Votre futur professionnel commence ici.</p>
         <div class="fastcv-button">
-            <a href="http://localhost/FastCV/index.php?route=home" class="create-cv-button">Créer votre CV avec FASTCV</a>
+            <?php if (\helpers\SessionManager::get('user_id')) : ?>
+                <a href="index.php?route=create-cv" class="create-cv-button">Créer votre CV avec FASTCV</a>
+            <?php else : ?>
+                <a href="index.php?route=login" class="create-cv-button">Créer votre CV avec FASTCV</a>
+            <?php endif; ?>
         </div>
     </section>
     <footer class="footer-good-cv">

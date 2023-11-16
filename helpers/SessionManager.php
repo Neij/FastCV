@@ -14,8 +14,6 @@ class SessionManager
     public static function destroy()
     {
         session_destroy();
-        // Assurez-vous de vider également les données de session en cours
-        $_SESSION = [];
     }
     public static function set($key, $value)
     {

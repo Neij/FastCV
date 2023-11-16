@@ -1,30 +1,29 @@
 <div class=home>
-    <div class="your-carousel-container">
-        <div class="carousel-item">
-            <img src="public/img/mission.jpg" alt="Image illustrant notre mission">
-        </div>
-        <div class="carousel-item">
-            <img src="public/img/mission.jpg" alt="Image illustrant notre mission">
-        </div>
-        <div class="carousel-item">
-            <img src="public/img/mission.jpg" alt="Image illustrant notre mission">
-        </div>
-        <div class="carousel-item">
-            <img src="public/img/mission.jpg" alt="Image illustrant notre mission">
-        </div>
-    </div>
     <section class="hero">
         <span class="emoji">📄</span>
         <h1>Créez votre CV professionnel</h1>
         <p>Rapidement et facilement avec FastCV</p>
-        <?php
-        if (\helpers\SessionManager::get('user_id')) {
-            echo '<a href="index.php?route=create-cv" class="cta-button">Commencez Maintenant</a>';
-        } else {
-            echo '<a href="index.php?route=login" class="cta-button">Commencez Maintenant</a>';
-        }
-        ?>
+        <?php if (\helpers\SessionManager::get('user_id')) : ?>
+            <a href="index.php?route=create-cv" class="cta-button">Commencez Maintenant</a>
+        <?php else : ?>
+            <a href="index.php?route=login" class="cta-button">Commencez Maintenant</a>
+        <?php endif; ?>
     </section>
+    </section>
+    <div class="your-carousel-container">
+        <div class="carousel-item">
+            <img src="public/img/carousel1.jpg" alt="Image illustrant notre mission">
+        </div>
+        <div class="carousel-item">
+            <img src="public/img/carousel2.jpg" alt="Image illustrant notre mission">
+        </div>
+        <div class="carousel-item">
+            <img src="public/img/carousel3.jpg" alt="Image illustrant notre mission">
+        </div>
+        <div class="carousel-item">
+            <img src="public/img/carousel4.jpg" alt="Image illustrant notre mission">
+        </div>
+    </div>
     <section class="features">
         <div class="feature">
             <span class="emoji">🚀</span>
@@ -56,19 +55,19 @@
         <span class="emoji">📄</span>
         <h2>Commencez votre CV</h2>
         <p>Ne perdez pas de temps. Commencez dès maintenant à créer un CV professionnel qui vous aidera à atteindre vos objectifs de carrière. Cliquez sur le bouton ci-dessous pour démarrer.</p>
-        <?php
-        if (\helpers\SessionManager::get('user_id')) {
-            echo '<a href="index.php?route=create-cv" class="cta-button">Commencez Maintenant</a>';
-        } else {
-            echo '<a href="index.php?route=login" class="cta-button">Commencez Maintenant</a>';
-        }
-        ?>
+        <?php if (\helpers\SessionManager::get('user_id')) : ?>
+            <a href="index.php?route=create-cv" class="cta-button">Commencez Maintenant</a>
+        <?php else : ?>
+            <a href="index.php?route=login" class="cta-button">Commencez Maintenant</a>
+        <?php endif; ?>
     </section>
+
 
     <section class="home-about">
         <span class="emoji">📖</span>
         <h2>À Propos de FastCV</h2>
         <p>FastCV est né de la passion d'une équipe de développeurs full stack pour simplifier la création de CV. Notre objectif est de vous fournir un outil convivial et efficace qui vous aide à réussir dans votre carrière. Rejoignez des milliers d'utilisateurs satisfaits et créez le CV qui vous ouvrira de nouvelles opportunités professionnelles.</p>
+        <a href="index.php?route=about" class="cta-button">En savoir plus...</a>
     </section>
 
     <section class="follow-us">

@@ -19,7 +19,6 @@
             </thead>
             <tbody>
                 <?php foreach ($this->usersWithDetails as $row) : ?>
-                    <!-- Première ligne du tableau -->
                     <tr class="admin-infos">
                         <td><?php echo $row['user_id']; ?></td>
                         <td class="admin-user-info"><?php echo $row['username']; ?></td>
@@ -31,10 +30,8 @@
                             <a href="index.php?route=delete-user&user_id=<?php echo $row['user_id']; ?>" class="user-delete-button">Supprimer</a>
                         </td>
                     </tr>
-                    <!-- Deuxième ligne du tableau -->
                     <tr>
                         <td colspan="6">
-                            <!-- Contenu de la cellule fusionnée -->
                             <h2>Métiers, Éducations, Informations personnelles de <?php echo $row['username']; ?></h2>
                             <ul class="admin-details">
                                 <li><strong>Métiers :</strong>

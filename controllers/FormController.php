@@ -2,19 +2,23 @@
 
 namespace Controllers;
 
+use helpers\Request;
+use helpers\SessionManager;
+
 class FormController extends AppController {
     public $csrfToken;
 
     public function __construct($pageActive, $template) {
         parent::__construct($pageActive, $template);
 
-        // Vérifiez si le jeton CSRF existe déjà dans la session
-        if (isset($_SESSION['csrf_token'])) {
-            $this->csrfToken = $_SESSION['csrf_token'];
+        
+        $storedCsrfToken = SessionManager::get('csrf_token');
+        if ($storedCsrfToken !== null) {
+            $this->csrfToken = $storedCsrfToken;
         } else {
-            // S'il n'existe pas, générez un nouveau jeton CSRF
+            
             $this->csrfToken = bin2hex(random_bytes(32));
-            $_SESSION['csrf_token'] = $this->csrfToken;
+            SessionManager::set('csrf_token', $this->csrfToken);
         }
     }
 
@@ -23,24 +27,24 @@ class FormController extends AppController {
     }
     
     public function getCsrfToken() {
-        if (isset($_SESSION['csrf_token']) && is_array($_SESSION['csrf_token'])) {
-            $tokenData = $_SESSION['csrf_token'];
+        $storedCsrfToken = SessionManager::get('csrf_token');
+        if ($storedCsrfToken !== null && is_array($storedCsrfToken)) {
+            $tokenData = $storedCsrfToken;
             $timestamp = $tokenData['timestamp'];
             $currentTime = time();
     
-            // Vérifiez si le jeton est toujours valide en fonction du timeout
-            $timeout = 3600; // (1 heure)
+            
+            $timeout = 3600; 
             if (($currentTime - $timestamp) <= $timeout) {
                 return $tokenData['token'];
             }
         }
     
-        // Générer un nouveau jeton CSRF si la session n'a pas de jeton valide
-        $csrfToken = bin2hex(random_bytes(32)); // Génération d'un jeton de 256 bits (32 octets)
+        
+        $csrfToken = bin2hex(random_bytes(32)); 
         $timestamp = time();
-        $_SESSION['csrf_token'] = ['token' => $csrfToken, 'timestamp' => $timestamp];
+        SessionManager::set('csrf_token', ['token' => $csrfToken, 'timestamp' => $timestamp]);
     
         return $csrfToken;
     }
-    
 }

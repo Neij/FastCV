@@ -1,5 +1,6 @@
 <?php
 
+
 require('config/config.php');
 
 require_once 'models/Database.php';
@@ -70,7 +71,7 @@ try {
             case 'api':
                 $apiController = new Controllers\ApiController();
 
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (\helpers\Request::isPost()) {
                     $apiController->translateUserInput();
                 } else {
                     $apiController->displayTranslationForm();

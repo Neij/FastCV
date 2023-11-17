@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Models\UsersAdmin;
 use Helpers\SessionManager;
+use Helpers\Request;
 
 class AdminController extends WebController
 {
@@ -26,16 +27,14 @@ class AdminController extends WebController
 
     public function deleteUser()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : '';
+        if (Request::get('user_id')) {
+            $user_id = Request::get('user_id');
 
-            if (!empty($user_id)) {
-                $success = $this->usersAdminModel->deleteUserWithAllInfos($user_id);
+            $success = $this->usersAdminModel->deleteUserWithAllInfos($user_id);
 
-                if ($success) {
-                    header("Location: index.php?route=admin");
-                    exit;
-                }
+            if ($success) {
+                header("Location: index.php?route=admin");
+                exit;
             }
         }
     }

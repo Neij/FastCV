@@ -32,7 +32,7 @@ class LoginController extends FormController
 
     public function loginUser()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (Request::isPost()) {
             $submittedCsrfToken = Request::post("csrfToken");
             $storedCsrfToken = SessionManager::get('csrf_token');
 
@@ -93,7 +93,6 @@ class LoginController extends FormController
                     return;
                 }
             }
-            
         } else {
             // Redirection vers la page de connexion si le formulaire n'a pas été soumis
             header("Location: index.php?route=login");
@@ -101,4 +100,3 @@ class LoginController extends FormController
         }
     }
 }
-

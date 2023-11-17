@@ -20,7 +20,7 @@ class CreateCVController extends FormController
         $this->usersModel = $usersModel;
         $this->userId = SessionManager::get('user_id');
         if (!$this->userId) {
-            // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
+            
             header("Location: index.php?route=login");
             exit;
         }
@@ -61,22 +61,20 @@ class CreateCVController extends FormController
             SessionManager::set('error_message', 'Veuillez remplir tous les champs pour ajouter un métier.');
         }
 
-        // Redirigez l'utilisateur vers la page de création de CV
         header("Location: index.php?route=create-cv");
         exit;
     }
 
     public function updateJob()
     {
-        // Récupérez les données du formulaire de modification
+        
         $jobId = (int) Request::post('jobId');
         $jobTitle = htmlspecialchars(Request::post('editJobTitle'));
         $jobDate = htmlspecialchars(Request::post('editJobDate'));
         $jobDescription = htmlspecialchars(Request::post('editJobDescription'));
 
-        // Vérifiez si les champs sont remplis
         if (!empty($jobTitle) && !empty($jobDescription)) {
-            // Mettez à jour le métier dans la base de données
+            
             $result = $this->usersModel->updateJob($jobId, $jobTitle, $jobDate, $jobDescription, $this->userId);
             if ($result) {
                 SessionManager::set('success_message', 'Le métier a été mis à jour avec succès.');
@@ -87,10 +85,9 @@ class CreateCVController extends FormController
             SessionManager::set('error_message', 'Veuillez remplir tous les champs pour mettre à jour le métier.');
         }
 
-        // Redirigez l'utilisateur vers la page de création de CV
         header("Location: index.php?route=create-cv");
         exit;
-        
+
     }
 
     public function deleteJob()
@@ -125,22 +122,21 @@ class CreateCVController extends FormController
             SessionManager::set('error_message', 'Veuillez remplir tous les champs pour ajouter une éducation.');
         }
 
-        // Redirigez l'utilisateur vers la page de création de CV
         header("Location: index.php?route=create-cv");
         exit;
     }
 
     public function updateEducation()
     {
-        // Récupérez les données du formulaire de modification
+
         $educationId = (int) Request::post('educationId');
         $institution = htmlspecialchars(Request::post('editEducationInstitution'));
         $degree = htmlspecialchars(Request::post('editEducationDegree'));
         $graduationYear = htmlspecialchars(Request::post('editEducationGraduationYear'));
 
-        // Vérifiez si les champs sont remplis
+
         if (!empty($institution) && !empty($degree) && !empty($graduationYear)) {
-            // Mettez à jour l'éducation dans la base de données
+
             $result = $this->usersModel->updateEducation($educationId, $this->userId, $institution, $degree, $graduationYear);
             if ($result) {
                 SessionManager::set('success_message', 'L\'éducation a été mise à jour avec succès.');
@@ -151,7 +147,6 @@ class CreateCVController extends FormController
             SessionManager::set('error_message', 'Veuillez remplir tous les champs pour mettre à jour l\'éducation.');
         }
 
-        // Redirigez l'utilisateur vers la page de création de CV
         header("Location: index.php?route=create-cv");
         exit;
         
@@ -189,7 +184,6 @@ class CreateCVController extends FormController
             SessionManager::set('error_message', 'Veuillez remplir tous les champs pour ajouter des informations personnelles.');
         }
 
-        // Redirigez l'utilisateur vers la page de création de CV
         header("Location: index.php?route=create-cv");
         exit;
     }

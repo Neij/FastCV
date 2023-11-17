@@ -1,6 +1,5 @@
 <div class="create-cv">
     <h2 class="create-cv-title" id="text-to-write">Créez votre CV</h2>
-
     <div class="message">
         <?php
         // Afficher les messages
@@ -18,7 +17,6 @@
         }
         ?>
     </div>
-    
     <section class="input-jobs">
         <h3>Ajoutez un métier</h3>
         <form action="index.php?route=create-job" method="post">
@@ -35,7 +33,6 @@
             <button type="submit" class="add-job-button">Ajouter le métier</button>
         </form>
     </section>
-
     <section class="show-jobs">
         <h2 class="show-jobs-title">Métiers ajoutés :</h2>
         <ul>
@@ -66,7 +63,6 @@
                                 <button type="button" class="cancel-edit-button" onclick="hideEditForm('editJobForm<?php echo $job['id']; ?>')">Annuler</button>
                             </form>
                         </div>
-
                         <form action="index.php?route=delete-job" method="post" style="display:inline;">
                             <input type="hidden" name="id" value="<?php echo $job['id']; ?>">
                             <button type="submit" class="emoji-button" title="Supprimer"><span class="emoji-trash">🗑️</span></button>
@@ -76,7 +72,6 @@
             <?php endif; ?>
         </ul>
     </section>
-
     <section class="input-educations">
         <h3>Ajoutez une formation</h3>
         <form action="index.php?route=create-education" method="post">
@@ -91,11 +86,8 @@
             <input type="text" id="graduationYear" name="graduationYear" required><br>
 
             <button type="submit" class="add-education-button">Ajouter la formation</button>
-
-            <!-- Affichage des messages ici comme vous l'avez fait pour les métiers -->
         </form>
     </section>
-
     <section class="show-educations">
         <h2 class="show-educations-title">Formations ajoutées :</h2>
         <ul>
@@ -108,10 +100,8 @@
                         Diplôme : <?php echo $education['degree']; ?> <br>
                         Année d'obtention : <?php echo $education['graduation_year']; ?> <br>
 
-                        <!-- Bouton de modification -->
                         <div class="emoji-button" title="Modifier" onclick="showEditForm('educationForm<?php echo $education['id']; ?>')">✏️</div>
 
-                        <!-- Formulaire de modification (initiallement caché) -->
                         <div id="educationForm<?php echo $education['id']; ?>" style="display:none;">
                             <form action="index.php?route=update-education" method="post">
                                 <input type="hidden" name="educationId" value="<?php echo $education['id']; ?>">
@@ -172,10 +162,8 @@
                         Adresse : <?php echo $personalInfo['address']; ?> <br>
                         Description : <?php echo $personalInfo['description']; ?> <br>
 
-                        <!-- Bouton de modification avec ID dynamique -->
                         <div class="emoji-button" title="Modifier" onclick="showEditForm('personalInfoForm<?php echo $personalInfo['id']; ?>')">✏️</div>
 
-                        <!-- Formulaire de modification (initialement caché) avec ID dynamique -->
                         <div id="personalInfoForm<?php echo $personalInfo['id']; ?>" style="display:none;">
                             <form action="index.php?route=update-personal-info" method="post">
                                 <input type="hidden" name="personalInfoId" value="<?php echo $personalInfo['id']; ?>">

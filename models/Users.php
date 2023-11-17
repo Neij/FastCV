@@ -11,17 +11,6 @@ class Users
         $this->db = $db;
     }
 
-    public function createUser($username, $hashedPassword, $email)
-    {
-        // Obtenir la date et l'heure actuelles
-        $currentDateTime = date("Y-m-d H:i:s");
-
-        // Insérez les données dans la base de données, y compris la date de création
-        $sql = "INSERT INTO users (username, password, email, date_creation) VALUES (?, ?, ?, ?)";
-        $params = [$username, $hashedPassword, $email, $currentDateTime];
-        return $this->db->execute($sql, $params);
-    }
-
     public function addJob($userId, $jobTitle, $jobDate, $jobDescription)
     {
         $sql = "INSERT INTO jobs (user_id, title, date, description) VALUES (?, ?, ?, ?)";
@@ -131,21 +120,18 @@ class Users
 
     public function updateLoginAttempts($username)
     {
-        // Obtenez le nombre de tentatives actuel et la date de la dernière tentative
         $currentAttemptsSql = "SELECT login_attempts, last_failed_login FROM users WHERE username = ?";
         $params = [$username];
         $userData = $this->db->findOne($currentAttemptsSql, $params);
 
         if (!$userData) {
-            return false; // L'utilisateur n'existe pas
+            return false; 
         }
 
         $currentAttempts = $userData['login_attempts'];
 
-        // Incrémente le compteur de tentatives
         $currentAttempts++;
 
-        // Mettez à jour la date de la dernière tentative infructueuse
         $sql = "UPDATE users SET login_attempts = ?, last_failed_login = NOW() WHERE username = ?";
         $params = [$currentAttempts, $username];
         return $this->db->execute($sql, $params);

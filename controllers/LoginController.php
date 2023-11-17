@@ -36,11 +36,10 @@ class LoginController extends FormController
             $submittedCsrfToken = Request::post("csrfToken");
             $storedCsrfToken = SessionManager::get('csrf_token');
 
-            // Assurez-vous que $storedCsrfToken est une chaîne de caractères
             if (is_array($storedCsrfToken)) {
                 $storedCsrfToken = $storedCsrfToken['token'];
             }
-            // Validation sécurisée du jeton CSRF
+
             if (!hash_equals($storedCsrfToken, $submittedCsrfToken)) {
                 $this->errorMessage = "Échec de la connexion : tentative CSRF détectée.";
                 $this->displayLogin();
@@ -52,19 +51,11 @@ class LoginController extends FormController
             $user = $this->usersModel->getUserByUsername($username);
 
             if ($user && password_verify($password, $user['password'])) {
-                // Connexion réussie
+                
                 SessionManager::set('user_authenticated', true);
-                SessionManager::set('user_id', $user['id']); // Stockez l'ID de l'utilisateur dans la session
+                SessionManager::set('user_id', $user['id']); 
                 SessionManager::set('username', $username);
 
-                $jobs = []; // Récupérez les métiers de l'utilisateur depuis la base de données
-                $educations = []; // Récupérez les formations de l'utilisateur depuis la base de données
-
-                // Stockez les métiers et les formations dans la session
-                SessionManager::set('jobs', $jobs);
-                SessionManager::set('educations', $educations);
-
-                // Réinitialisation du compteur de tentatives de connexion
                 SessionManager::set('login_attempts', 0);
 
                 if ($username === 'admin' && $password === 'Admin29@') {
@@ -74,19 +65,18 @@ class LoginController extends FormController
                 }
                 exit;
             } else {
-                // Le mot de passe ne correspond pas ou l'utilisateur n'existe pas
-                // Échec de la connexion : gestion des tentatives
+
                 $loginAttempts = SessionManager::get('login_attempts', 0);
                 $loginAttempts++;
                 SessionManager::set('login_attempts', $loginAttempts);
 
                 if ($loginAttempts >= 3) {
-                    // Compte temporairement bloqué
+                    
                     $this->errorMessage = "Le nom d'utilisateur ou le mot de passe est incorrect.";
                     $this->displayLogin();
                     return;
                 } else {
-                    // Affichage d'un message d'erreur avec le nombre de tentatives restantes
+                    
                     $remainingAttempts = 3 - $loginAttempts;
                     $this->errorMessage = "Échec de la connexion : identifiants incorrects. Il vous reste {$remainingAttempts} essais.";
                     $this->displayLogin();
@@ -94,7 +84,7 @@ class LoginController extends FormController
                 }
             }
         } else {
-            // Redirection vers la page de connexion si le formulaire n'a pas été soumis
+            
             header("Location: index.php?route=login");
             exit;
         }

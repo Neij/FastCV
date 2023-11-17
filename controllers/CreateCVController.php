@@ -212,7 +212,7 @@ class CreateCVController extends FormController
         
     }
 
-
+    
     public function deletePersonalInfo()
     {
         $personalInfoId = (int) Request::post('id');

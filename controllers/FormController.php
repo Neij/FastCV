@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-use helpers\Request;
 use helpers\SessionManager;
 
 class FormController extends AppController {
@@ -11,7 +10,6 @@ class FormController extends AppController {
     public function __construct($pageActive, $template) {
         parent::__construct($pageActive, $template);
 
-        
         $storedCsrfToken = SessionManager::get('csrf_token');
         if ($storedCsrfToken !== null) {
             $this->csrfToken = $storedCsrfToken;
@@ -33,14 +31,12 @@ class FormController extends AppController {
             $timestamp = $tokenData['timestamp'];
             $currentTime = time();
     
-            
             $timeout = 3600; 
             if (($currentTime - $timestamp) <= $timeout) {
                 return $tokenData['token'];
             }
         }
     
-        
         $csrfToken = bin2hex(random_bytes(32)); 
         $timestamp = time();
         SessionManager::set('csrf_token', ['token' => $csrfToken, 'timestamp' => $timestamp]);

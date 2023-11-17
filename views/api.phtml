@@ -1,0 +1,64 @@
+<!-- Ajoutez ces classes dans votre fichier HTML (api.phtml) -->
+<div class="api-translation-container">
+    <h1 class="api-translation-header">Traducteur API</h1>
+
+    <form class="api-translation-form" action="" method="post">
+        <label class="api-form-label" for="user_input">Entrez le texte à traduire :</label>
+        <input class="api-form-input" type="text" id="user_input" name="user_input" required>
+
+        <!-- Ajout de menus déroulants pour les langues -->
+        <label class="api-form-label" for="source_language">Langue source :</label>
+        <select class="api-form-select" id="source_language" name="source_language">
+            <option value="fr">Français</option>
+            <option value="en">Anglais</option>
+            <option value="es">Espagnol</option>
+            <option value="pt">Portugais</option>
+            <option value="it">Italien</option>
+            <option value="de">Allemand</option>
+        </select>
+
+        <label class="api-form-label" for="target_language">Langue cible :</label>
+        <select class="api-form-select" id="target_language" name="target_language">
+            <option value="en">Anglais</option>
+            <option value="fr">Français</option>
+            <option value="es">Espagnol</option>
+            <option value="pt">Portugais</option>
+            <option value="it">Italien</option>
+            <option value="de">Allemand</option>
+        </select>
+
+        <button class="api-form-button" type="submit">Traduire</button>
+    </form>
+
+    <!-- Dans votre fichier PHP (api.phtml) -->
+    <h2 class="api-translation-result">Résultat de la traduction</h2>
+    <div class="api-results-container">
+
+        <?php if (isset($this->viewData['textToTranslate'])) : ?>
+            <div class="api-source">
+                <p class="api-result-text">Texte source :</p>
+                <p class="api-result-text-content"><?php echo htmlspecialchars($this->viewData['textToTranslate']); ?></p>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($this->viewData['translatedText'])) : ?>
+            <div class="api-translated">
+                <p class="api-result-text">Texte traduit :</p>
+                <p class="api-result-text-content"><?php echo htmlspecialchars($this->viewData['translatedText']); ?></p>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($this->viewData['error'])) : ?>
+            <div class="api-error">
+                <p class="api-error-text">Erreur :</p>
+                <p class="api-error-text-content"><?php echo htmlspecialchars($this->viewData['error']); ?></p>
+                <?php if (isset($this->viewData['errorDetails'])) : ?>
+                    <pre class="api-error-details"><?php echo htmlspecialchars($this->viewData['errorDetails']); ?></pre>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+
+    </div>
+
+
+</div>

@@ -30,7 +30,6 @@
   --button-border-radius: 5px;
 }
 
-
 /************************************************************************
  --------------------------COOKIE-CONSENT--------------------------------
  ************************************************************************/
@@ -91,9 +90,9 @@
 
 .rev-block {
   position: relative;
-  display: block; 
-  font-size: var(--text-large); 
-  margin-bottom: var(--spacing-medium); 
+  display: block;
+  font-size: var(--text-large);
+  margin-bottom: var(--spacing-medium);
 }
 
 .rev-block .custom-span {
@@ -286,7 +285,7 @@ main {
  ************************************************************************/
 
 .slick-center {
-  transform: scale(1.2); 
+  transform: scale(1.2);
   transition: transform 0.3s ease;
 }
 
@@ -297,7 +296,7 @@ main {
 }
 
 .carousel-item {
-  text-align: center; 
+  text-align: center;
 }
 
 .carousel-item img {
@@ -305,7 +304,7 @@ main {
   max-height: 100%;
   width: auto;
   height: auto;
-  margin: var(--spacing-none) auto; 
+  margin: var(--spacing-none) auto;
   border: solid 4px var(--color-primary);
 }
 
@@ -321,7 +320,7 @@ main {
   color: var(--color-text);
 }
 
-.home  {
+.home {
   font-size: var(--text-exlarge);
 }
 
@@ -354,7 +353,6 @@ main {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 
 .testimonial {
   text-align: center;
@@ -392,7 +390,7 @@ main {
   text-align: center;
   padding: 60px 0;
   background-color: var(--color-primary);
-  color: var(--color-text)
+  color: var(--color-text);
 }
 
 /************************************************************************
@@ -1645,4 +1643,113 @@ svg {
     background-color: var(--color-delete);
     transform: scale(1.5);
   }
+}
+
+/************************************************************************
+------------------------------TRANSLATOR STYLES-------------------------
+************************************************************************/
+.api-translation-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-large);
+  background-color: var(--color-background);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: var(--color-text);
+}
+
+.api-translation-header {
+  font-size: var(--text-extralarge);
+  color: var(--color-logo);
+  margin-bottom: var(--spacing-large);
+  text-align: center;
+}
+
+.api-translation-form {
+  margin-bottom: var(--spacing-large);
+}
+
+.api-form-label {
+  display: block;
+  margin-bottom: var(--spacing-medium);
+  color: var(--color-muted);
+  font-size: var(--text-large);
+}
+
+.api-form-input,
+.api-form-select,
+.api-form-button {
+  width: 100%;
+  padding: var(--spacing-medium);
+  margin-bottom: var(--spacing-medium);
+  border: 1px solid var(--color-muted);
+  border-radius: var(--button-border-radius);
+  box-sizing: border-box;
+  font-size: var(--text-large);
+}
+
+.api-form-button {
+  background-color: var(--color-primary);
+  font-size: var(--text-large);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.api-form-button:hover {
+  background-color: var(--color-success);
+}
+
+.api-translation-result {
+  margin-top: var(--spacing-large);
+  text-align: center;
+}
+
+.api-results-container {
+  text-align: center;
+  padding: var(--spacing-large);
+  background-color: var(--color-muted);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: var(--button-border-radius);
+}
+
+.api-source {
+  color: var(--color-primary);
+  font-size: var(--text-extralarge);
+  font-weight: bold;
+  background-color: var(--color-text);
+  border-radius: var(--button-border-radius);
+  border: solid 2px var(--color-primary);
+}
+
+.api-translated,
+.api-error {
+  color: var(--color-success);
+  margin-bottom: var(--spacing-medium);
+  font-size: var(--text-extralarge);
+  font-weight: bold;
+  background-color: var(--color-text);
+  border-radius: var(--button-border-radius);
+  border: solid 2px var(--color-primary);
+}
+
+.api-result-text {
+  color: var(--color-background);
+  margin-bottom: var(--spacing-medium);
+  font-size: var(--text-extralarge);
+  font-weight: bold;
+  background-color: var(--color-muted);
+}
+
+.api-error-text {
+  color: var(--color-delete);
+  font-weight: bold;
+}
+
+
+.api-error-details {
+  background-color: var(--color-background);
+  padding: var(--spacing-medium);
+  border-radius: var(--button-border-radius);
+  margin-top: var(--spacing-medium);
+  overflow: auto;
+  color: var(--color-text);
 }

@@ -8,6 +8,7 @@ use helpers\Request;
 use helpers\SessionManager;
 
 
+
 spl_autoload_register(function ($class) {
     $file = __DIR__ . '/' . str_replace('\\', '/', $class) . '.php';
     if (file_exists($file)) {
@@ -36,7 +37,7 @@ try {
                 $usersModel = new \Models\Users($database);
                 $controller = new Controllers\LoginController($usersModel);
                 if (Request::isPost()) {
-                    $user = $controller->loginUser(); 
+                    $user = $controller->loginUser();
                     if ($user) {
                         \helpers\SessionManager::set('user_id', $user['id']);
                         header("Location: index.php?route=profile");
@@ -65,6 +66,18 @@ try {
                 $usersAdminModel = new \Models\UsersAdmin($database);
                 $controller = new Controllers\ProfileController($usersAdminModel);
                 break;
+
+            case 'api':
+                $apiController = new Controllers\ApiController();
+
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $apiController->translateUserInput();
+                } else {
+                    $apiController->displayTranslationForm();
+                }
+                exit;
+                break;
+
 
             case 'create-cv':
                 $usersModel = new \Models\Users($database);

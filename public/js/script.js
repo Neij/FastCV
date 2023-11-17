@@ -7,7 +7,7 @@
     autoplay: true,
     autoplaySpeed: 3000,
     dots: true,
-    slidesToShow: 1, // Afficher un seul élément à la fois
+    slidesToShow: 1, 
     slidesToScroll: 1,
   });
 });

@@ -20,7 +20,7 @@ class Database {
     public function fetchAll($sql, $params = []) {
         $statement = $this->prepare($sql);
         $statement->execute($params);
-        return $statement->fetchAll(); // Utilisation du FETCH_ASSOC par défaut
+        return $statement->fetchAll(); 
     }
     
     public function fetchColumn($sql, $params = []) {

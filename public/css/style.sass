@@ -1,0 +1,1492 @@
+/************************************************************************
+/*------------------------------VARIABLES CSS----------------------------
+/*************************************************************************/
+$color-background: #0a192f
+$color-text: #ffffff
+$color-muted: #b4b4b4
+$color-primary: #3a8dff
+$color-success: #38b000
+$color-delete: #c70000
+$color-logo: rgb(201, 174, 21)
+
+$font-heading: "Arial", sans-serif
+$font-body: "Tahoma", sans-serif
+$font-logo: "Verdana", sans-serif
+
+$text-small: 12px
+$text-medium: 16px
+$text-large: 20px
+$text-extralarge: 40px
+
+$spacing-none: 0px
+$spacing-small: 5px
+$spacing-medium: 10px
+$spacing-large: 20px
+$spacing-extralarge: 40px
+
+$button-padding: 10px 20px
+$big-button-padding: 15px 30px
+$button-border-radius: 5px
+
+/************************************************************************
+/*--------------------------COOKIE-CONSENT--------------------------------
+/*************************************************************************/
+
+.centered-popup
+    position: fixed
+    left: 0
+    right: 0
+    bottom: 0
+    margin: auto
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, 0.5)
+    display: flex
+    justify-content: center
+    align-items: center
+    z-index: 1000
+
+.popup-content
+    background-color: $color-text
+    padding: 20px
+    border-radius: $button-border-radius
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2)
+    text-align: center
+
+#accept-cookies, #refuse-cookies
+    margin: 10px
+    padding: 10px 20px
+    background-color: $color-primary
+    color: $color-text
+    border: none
+    cursor: pointer
+    border-radius: $button-border-radius
+
+#refuse-cookies
+    background-color: $color-delete
+
+.hidden-popup
+    display: none
+
+/************************************************************************
+/*--------------------------------HEADER--------------------------------
+/*************************************************************************/
+
+.rotate-on-hover
+    transition: transform 1s ease-in-out
+
+    &:hover
+        transform: rotate(360deg)
+
+.rev-block
+    position: relative
+    display: block
+    font-size: var(--text-large)
+    margin-bottom: var(--spacing-medium)
+
+.custom-span
+    display: block
+
+    &:after
+        content: ""
+        top: 0
+        left: 0
+        position: absolute
+        width: 0
+        height: 125%
+
+    &:after
+        background: var(--color-success)
+        animation: rev-block-left 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards
+        animation-delay: 0.5s
+
+    &.reverse:after
+        background: var(--color-primary)
+        animation: rev-block-right 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards
+        animation-delay: 1s
+
+@keyframes rev-block-left
+    0%
+        left: 8%
+        width: 0%
+
+    50%
+        left: 8%
+        width: 90%
+
+    100%
+        left: 92%
+        width: 0%
+
+@keyframes rev-block-right
+    0%
+        left: 100%
+        width: 0%
+
+    50%
+        left: 0
+        width: 100%
+
+    100%
+        left: 0
+        width: 0%
+
+.header-title-description
+    margin-bottom: var(--spacing-extralarge)
+
+.site-header
+    background-color: var(--color-background)
+    color: var(--color-text)
+    padding: var(--spacing-large) var(--spacing-none)
+    text-align: center
+
+.header-content
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding: var(--spacing-none) var(--spacing-medium)
+
+.header-logo
+    display: flex
+    align-items: center
+
+.logo-container
+    display: flex
+    align-items: center
+
+.header-logo img
+    width: 150px
+
+.strong-title
+    color: var(--color-success)
+    font-size: var(--text-extralarge)
+
+    &:hover
+        color: var(--color-primary)
+
+.strong-title-cv
+    color: var(--color-primary)
+    font-size: var(--text-extralarge)
+
+    &:hover
+        color: var(--color-success)
+
+.header-nav ul
+    list-style-type: none
+    padding: var(--spacing-none)
+    display: flex
+    flex-direction: column
+
+@media screen and (min-width: 992px)
+  .header-nav ul
+    flex-direction: row
+    justify-content: space-evenly
+    width: 100%
+
+  .header-nav ul li a
+    font-size: var(--text-extralarge)
+
+  .header-nav ul li
+    margin: var(--spacing-medium)
+
+  .header-nav ul li a
+    position: relative
+    text-decoration: none
+    font-size: var(--text-large)
+    color: var(--color-text)
+    padding: 5px 10px
+    border: 2px solid transparent
+    border-radius: 5px
+    transition: border-color 1s ease-in-out, color 0.6s ease-in-out
+
+  .header-nav ul li a:hover
+    border-color: var(--color-primary)
+    color: var(--color-primary)
+
+  ul li a.disconnect:hover
+    border-color: var(--color-delete)
+    color: var(--color-delete)
+
+  .name-connect
+    font-size: var(--text-large)
+    color: var(--color-text)
+    font-weight: bold
+    text-decoration: underline
+    text-decoration-color: var(--color-success)
+
+  .column-list
+    padding: var(--spacing-medium)
+    border: 2px solid var(--color-primary)
+    border-radius: var(--spacing-medium)
+    display: flex
+    flex-direction: column
+    align-items: center
+
+  .column-list span, .column-list a
+    margin: var(--spacing-small) var(--spacing-none)
+
+  nav.header-nav ul li a.active
+    border: 2px solid var(--color-success)
+    color: var(--color-muted)
+
+  main
+    border: 4px solid var(--color-success)
+    background-color: var(--color-muted)
+
+  .site-margin
+    background-color: var(--color-text)
+    margin: var(--spacing-none) var(--spacing-extralarge)
+    border-radius: var(--spacing-medium)
+
+/************************************************************************
+/*------------------------------HOME------------------------------------
+/*************************************************************************/
+
+.slick-center
+    transform: scale(1.2)
+    transition: transform 0.3s ease
+
+.your-carousel-container
+    display: flex
+    justify-content: center
+    align-items: center
+
+.carousel-item
+    text-align: center
+
+.carousel-item img
+    max-width: 100%
+    max-height: 100%
+    width: auto
+    height: auto
+    margin: var(--spacing-none) auto
+    border: solid 4px var(--color-primary)
+
+.emoji
+    font-size: var(--text-extralarge)
+    margin-bottom: var(--spacing-medium)
+
+.hero
+    text-align: center
+    padding: 100px var(--spacing-none)
+    background-color: var(--color-primary)
+    color: var(--color-text)
+
+.home
+    font-size: var(--text-exlarge)
+
+.cta-button
+    display: inline-block
+    padding: var(--big-button-padding)
+    background-color: var(--color-text)
+    color: var(--color-primary)
+    font-size: var(--text-large)
+    text-decoration: none
+    border-radius: 10px
+    transition: background-color 1s, color 1s
+
+    &:hover
+        background-color: var(--color-success)
+        color: var(--color-text)
+
+.features
+    padding: 60px 0
+
+.feature
+    flex-basis: calc(33.33% - 20px)
+    text-align: center
+    margin-bottom: 20px
+    padding: 20px
+    background-color: var(--color-text)
+    border-radius: 5px
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+
+.testimonial
+    text-align: center
+    padding: 60px 0
+    background-color: var(--color-primary)
+    color: var(--color-text)
+
+.testimonial blockquote
+    font-size: var(--text-large)
+    font-weight: bold
+    margin: 0
+    padding: 0
+
+.testimonial p
+    font-size: var(--text-large)
+    margin-top: 10px
+
+.start-now
+    text-align: center
+    padding: 60px 0
+    background-color: #fff
+    color: #333
+
+.home-about
+    text-align: center
+    padding: 60px 0
+    background-color: var(--color-text)
+    color: var(--color-background)
+
+.follow-us
+    text-align: center
+    padding: 60px 0
+    background-color: var(--color-primary)
+    color: var(--color-text)
+
+/************************************************************************
+/*--------------------------A PROPOS--------------------------
+/************************************************************************/
+
+.custom-heading
+    display: inline-block
+
+.custom-heading h2
+    color: var(--color-text)
+    font-family: Avenir Next, Helvetica Neue, Helvetica, Tahoma, sans-serif
+    font-size: 1em
+    font-weight: 700
+    display: inline-block
+    position: relative
+    letter-spacing: calc(100em / 1000)
+    border: solid 3px var(--color-background)
+    border-radius: var(--spacing-small)
+    padding: var(--spacing-extralarge) var(--spacing-large) var(--spacing-large) var(--spacing-large)
+    margin-bottom: var(--spacing-extralarge)
+
+.custom-heading h2 span
+    display: inline-block
+    position: relative
+    transform-style: preserve-3d
+    perspective: 500px
+    -webkit-font-smoothing: antialiased
+    transition: transform 0.3s ease-out
+
+.custom-heading h2 span::before,
+.custom-heading h2 span::after
+    content: attr(data-text)
+    position: absolute
+    top: 0
+    left: -1px
+    transform-origin: left top
+    transform: scale(1.1, 1) skew(0deg, -40deg)
+    transition: transform 0.3s ease-out
+    color: rgba(35, 35, 134, 0.2)
+    z-index: 1
+
+.custom-heading h2 span::after
+    text-shadow: -1px 0 1px var(--color-background), 1px 0 1px rgba(0, 0, 0, 0.8)
+    transform: rotateY(-40deg)
+    z-index: 2
+
+.custom-heading h2 .green-letter:hover::before
+    transform: scale(1.1, 1) skew(0deg, -10deg)
+
+.custom-heading h2 .green-letter:hover::after
+    transform: rotateY(-10deg)
+    color: var(--color-success)
+
+.custom-heading h2 .blue-letter:hover::before
+    transform: scale(1.1, 1) skew(0deg, -10deg)
+
+.custom-heading h2 .blue-letter:hover::after
+    transform: rotateY(-10deg)
+    color: var(--color-primary)
+
+@media (min-width: 20em)
+.custom-heading h2
+    font-size: 2em
+    .custom-heading h2 span::before,
+    .custom-heading h2 span::after
+        display: block
+
+@media (min-width: 30em)
+.custom-heading h2
+    font-size: 3em
+
+@media (min-width: 40em)
+.custom-heading h2
+    font-size: 5em
+
+@media (min-width: 60em)
+.custom-heading h2
+    font-size: 8em
+
+.section-photos
+    background-color: var(--color-primary)
+    transition: background-color 4s ease
+
+.section-photos:hover
+    animation: colorChange 12s infinite
+
+@keyframes colorChange
+    0%
+        background-color: var(--color-primary)
+    15%
+        background-color: var(--color-success)
+    30%
+        background-color: var(--color-background)
+    45%
+        background-color: var(--color-primary)
+    60%
+        background-color: var(--color-success)
+    75%
+        background-color: var(--color-background)
+    90%
+        background-color: var(--color-primary)
+
+.section-photos h3
+    color: var(--color-text)
+    font-size: var(--text-extralarge)
+    text-decoration: underline
+
+.gallery
+    display: flex
+    justify-content: center
+    align-items: center
+    margin-bottom: var(--spacing-extralarge)
+    position: relative
+
+.gallery ul
+    list-style-type: none
+    margin: 0
+    padding: 0
+
+.gallery ul li,
+.gallery li img
+    -webkit-transition: all 0.1s ease-in-out
+    -moz-transition: all 0.1s ease-in-out
+    -o-transition: all 0.1s ease-in-out
+    transition: all 0.1s ease-in-out
+
+.gallery ul li img
+    border: 1px solid var(--color-muted)
+    padding: 5px
+    width: 175px
+    height: 175px
+    background: var(--color-text)
+    margin: auto
+
+.gallery ul li:hover img
+    transform: scale(1.2)
+    background: var(--color-background)
+    border: 1px solid var(--color-background)
+
+.gallery ul li
+    margin: var(--spacing-large)
+
+@media only screen and (min-width: 1000px)
+.gallery ul
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+
+.gallery ul li
+    flex: 0 0 20%
+    margin: 10px
+
+.gallery li
+    position: relative
+    display: inline-block
+    margin: var(--spacing-large)
+
+.gallery li a
+    display: block
+    position: relative
+
+.gallery li img
+    display: block
+    width: 100%
+    height: auto
+    border: 1px solid var(--color-muted)
+    padding: 5px
+    background: var(--color-text)
+    margin: auto
+    -webkit-transition: all 0.3s ease-in-out
+    -moz-transition: all 0.3s ease-in-out
+    -o-transition: all 0.3s ease-in-out
+    transition: all 0.3s ease-in-out
+
+.gallery ul li
+    position: relative
+    margin: var(--spacing-large)
+
+.gallery li .overlay
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    width: 60%
+    height: 100%
+    background: rgba(0, 0, 0, 0.5)
+    color: #fff
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    opacity: 0
+    transition: opacity 0.3s ease
+    font-size: var(--text-large)
+
+.gallery li .overlay h4
+    margin: 0
+
+.gallery li:hover .overlay
+    opacity: 1
+
+.about
+    text-align: center
+    background-color: var(--color-text)
+    color: var(--color-background)
+
+.about-text
+    border: var(--color-primary) 4px solid
+    text-align: center
+    font-size: var(--text-large)
+    border-radius: var(--button-border-radius)
+
+.about-text:hover
+    border: var(--color-success) 4px solid
+
+.about section
+    padding: var(--spacing-large)
+
+/************************************************************************
+/*--------------------------CREATE-CV--------------------------
+/*************************************************************************/
+
+.create-cv
+    background-color: var(--color-muted)
+    font-family: var(--font-body)
+    color: var(--color-text)
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+.create-cv-title
+    font-size: var(--text-extralarge)
+    color: var(--color-background)
+    text-align: center
+    text-decoration: underline
+    margin-bottom: var(--spacing-large)
+    white-space: nowrap
+    overflow: hidden
+    display: inline-block
+    border-right: 2px solid
+
+.create-cv-title::after
+    content: ""
+    display: inline-block
+    width: 0
+    overflow: hidden
+    border-right: 2px solid
+    animation: typing 3s steps(22, end), blink 0.5s step-end infinite
+
+@keyframes typing
+    from
+        width: 0
+    to
+        width: 100%
+
+@keyframes blink
+    50%
+        border-color: transparent
+
+.input-jobs,
+.input-educations,
+.show-jobs,
+.show-educations,
+.input-personal-info,
+.show-personal-info
+    background-color: var(--color-background)
+    padding: var(--spacing-medium)
+    border-radius: var(--button-border-radius)
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+    width: 100%
+    max-width: 50%
+    text-align: center
+    margin-top: var(--spacing-medium)
+
+.add-job-button,
+.add-education-button,
+.add-personal-info-button
+    font-size: var(--text-large)
+    margin-top: var(--spacing-medium)
+    background-color: var(--color-primary)
+    color: var(--color-text)
+    padding: var(--button-padding)
+    border: none
+    border-radius: var(--button-border-radius)
+    cursor: pointer
+    transition: background-color 0.3s ease
+    width: 50%
+
+.add-job-button:hover,
+.add-education-button:hover,
+.add-personal-info-button:hover
+    background-color: var(--color-success)
+
+.message
+    margin: var(--spacing-medium) 0
+    text-align: center
+
+.success-message
+    color: var(--color-success)
+
+.error-message
+    color: var(--color-delete)
+
+.create-cv h3,
+.show-jobs-title,
+.show-educations-title,
+.show-personal-info-title
+    font-size: var(--text-large)
+    color: var(--color-primary)
+    margin: var(--spacing-medium) 0
+    text-align: center
+
+.create-cv ul,
+.show-jobs ul,
+.show-educations ul,
+.show-personal-info ul
+    list-style-type: none
+    padding: 0
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+
+.job-item,
+.education-item,
+.personal-info-item
+    background-color: var(--color-primary)
+    color: var(--color-text)
+    padding: var(--spacing-medium)
+    margin: var(--spacing-small)
+    border-radius: var(--button-border-radius)
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+    margin-right: var(--spacing-medium)
+    text-align: center
+    transition: background-color 0.3s ease
+    flex: 1 1 calc(30% - var(--spacing-medium))
+
+.job-item:hover,
+.education-item:hover,
+.personal-info-item:hover
+    background-color: var(--color-delete)
+
+.create-cv label,
+.show-jobs label,
+.show-educations label,
+.show-personal-info label
+    font-size: var(--text-large)
+    color: var(--color-primary)
+
+.create-cv input[type="text"],
+.create-cv textarea,
+.show-jobs input[type="text"],
+.show-jobs textarea,
+.show-educations input[type="text"],
+.show-educations textarea,
+.show-personal-info input[type="text"],
+.show-personal-info textarea
+    font-size: var(--text-medium)
+    background-color: var(--color-text)
+    color: var(--color-background)
+    border: 1px solid var(--color-muted)
+    border-radius: var(--button-border-radius)
+    padding: var(--spacing-medium)
+    margin: var(--spacing-medium)
+    width: 90%
+    text-align: center
+
+.create-cv input[type="text"]:hover,
+.create-cv textarea:hover,
+.show-jobs input[type="text"]:hover,
+.show-jobs textarea:hover,
+.show-educations input[type="text"]:hover,
+.show-educations textarea:hover,
+.show-personal-info input[type="text"]:hover,
+.show-personal-info textarea:hover
+    background-color: var(--color-muted)
+    border: 1px solid var(--color-success)
+
+.create-cv input[type="text"]:focus,
+.create-cv textarea:focus,
+.show-jobs input[type="text"]:focus,
+.show-jobs textarea:focus,
+.show-educations input[type="text"]:focus,
+.show-educations textarea:focus,
+.show-personal-info input[type="text"]:focus,
+.show-personal-info textarea:focus
+    border: 1px solid var(--color-primary)
+
+.create-cv input[type="text"]::placeholder,
+.create-cv textarea::placeholder,
+.show-jobs input[type="text"]::placeholder,
+.show-jobs textarea::placeholder,
+.show-educations input[type="text"]::placeholder,
+.show-educations textarea::placeholder,
+.show-personal-info input[type="text"]::placeholder,
+.show-personal-info textarea::placeholder
+    color: var(--color-muted)
+
+.emoji-button
+    display: inline-block
+    cursor: pointer
+    background: none
+    border: none
+    margin: 0
+    padding: 0
+    font-size: var(--text-extralarge)
+    margin-left: var(--spacing-medium)
+
+.emoji-button:hover
+    transform: scale(1.2)
+
+/************************************************************************
+/*--------------------------PROFIL--------------------------
+/*************************************************************************/
+
+.profile-container
+    background-color: var(--color-text)
+    color: var(--color-background)
+    padding: var(--spacing-large)
+    font-family: var(--font-body)
+    text-align: center
+
+.profile-title
+    font-size: var(--text-large)
+
+.profile-welcome
+    font-size: var(--text-medium)
+    color: var(--color-primary)
+
+.profile-actions
+    margin-top: var(--spacing-large)
+
+.profile-action-btn
+    display: inline-block
+    padding: var(--button-padding)
+    border-radius: var(--button-border-radius)
+    margin-right: var(--spacing-medium)
+    text-decoration: none
+    color: var(--color-text)
+    background-color: var(--color-primary)
+    transition: background-color 0.3s ease-in-out
+
+.profile-action-btn:hover
+    background-color: var(--color-success)
+
+.logout-btn
+    background-color: var(--color-delete)
+
+.profile-cv-section,
+.profile-delete-section
+    margin-top: var(--spacing-large)
+
+.profile-cv-title,
+.profile-delete-title
+    font-size: var(--text-large)
+
+.show-cvs
+    border: solid var(--color-background) 2px
+
+.profile-delete-info
+    font-size: var(--text-medium)
+    color: var(--color-delete)
+
+.profile-delete-btn
+    padding: var(--button-padding)
+    border-radius: var(--button-border-radius)
+    background-color: var(--color-delete)
+    color: var(--color-text)
+    transition: transform 0.3s ease-in-out
+
+.profile-delete-btn:hover
+    transform: scale(0.9)
+
+/************************************************************************
+/*--------------------------LOGIN--------------------------
+/*************************************************************************/
+
+.input-container
+    width: 50%
+    margin: var(--spacing-none) auto
+
+.login
+    background-color: var(--color-text)
+    border: 3px solid var(--color-primary)
+    border-radius: var(--spacing-medium)
+    padding: var(--spacing-medium)
+    text-align: center
+
+.login h2
+    color: var(--color-primary)
+    font-size: var(--text-extralarge)
+    margin-bottom: var(--spacing-medium)
+
+.login label
+    font-size: var(--text-large)
+    color: var(--color-background)
+    display: block
+    margin-bottom: var(--spacing-small)
+
+.login input[type="text"],
+.login input[type="password"]
+    font-size: var(--text-large)
+    background-color: var(--color-text)
+    color: var(--color-background)
+    border: 1px solid var(--color-primary)
+    padding: var(--spacing-small)
+    margin: var(--spacing-small) 0
+    border-radius: var(--spacing-small)
+    width: 100%
+    text-align: center
+
+.login input[type="text"]:hover,
+.login input[type="password"]:hover
+    background-color: var(--color-muted)
+    color: var(--color-text-hover)
+    border-color: var(--color-success)
+    cursor: pointer
+
+.login input[type="submit"]
+    background-color: var(--color-primary)
+    color: var(--color-text)
+    border: none
+    padding: var(--button-padding)
+    margin: var(--spacing-medium)
+    border-radius: var(--spacing-small)
+    cursor: pointer
+    font-size: var(--text-large)
+    transition: background-color 0.3s ease
+
+.login input[type="submit"]:hover
+    background-color: var(--color-success)
+
+.login .message
+    text-align: center
+    margin-top: var(--spacing-medium)
+    padding: var(--spacing-small)
+    font-size: var(--text-medium)
+
+.login .success
+    color: var(--color-success)
+    font-weight: bold
+
+.login .error
+    color: var(--color-delete)
+    font-weight: bold
+
+.login p
+    font-size: var(--text-large)
+    color: var(--color-background)
+
+.login a
+    font-size: var(--text-large)
+    color: var(--color-success)
+    text-decoration: none
+    font-weight: bold
+
+.login a:hover
+    color: var(--color-primary)
+
+/************************************************************************
+/*--------------------------REGISTER--------------------------
+/*************************************************************************/
+
+.register
+    background-color: var(--color-text)
+    border: 3px solid var(--color-primary)
+    border-radius: var(--spacing-medium)
+    padding: var(--spacing-medium)
+    text-align: center
+
+.register h2
+    color: var(--color-primary)
+    font-size: var(--text-extralarge)
+    margin-bottom: var(--spacing-medium)
+
+.register label
+    color: var(--color-background)
+    display: block
+    margin-bottom: var(--spacing-small)
+
+.register input[type="text"],
+.register input[type="email"],
+.register input[type="password"]
+    background-color: var(--color-text)
+    color: var(--color-background)
+    border: 1px solid var(--color-primary)
+    padding: var(--spacing-small)
+    margin: var(--spacing-small) 0
+    border-radius: var(--spacing-small)
+    width: 100%
+    text-align: center
+    font-size: var(--text-large)
+
+.register input[type="text"]:hover,
+.register input[type="email"]:hover,
+.register input[type="password"]:hover
+    background-color: var(--color-muted)
+    color: var(--color-text-hover)
+    border-color: var(--color-success)
+    cursor: pointer
+
+.register input[type="submit"]
+    background-color: var(--color-primary)
+    color: var(--color-text)
+    border: none
+    padding: var(--spacing-small) var(--spacing-medium)
+    margin: var(--spacing-medium) 0
+    border-radius: var(--spacing-small)
+    cursor: pointer
+    font-size: var(--text-medium)
+    transition: background-color 0.3s ease
+
+.register input[type="submit"]:hover
+    background-color: var(--color-success)
+
+.register .error
+    color: var(--color-delete)
+    font-weight: bold
+    font-size: var(--text-medium)
+    margin-top: var(--spacing-small)
+
+.register a
+    color: var(--color-primary)
+    text-decoration: none
+    font-weight: bold
+
+.register a:hover
+    color: var(--color-success)
+
+/************************************************************************
+/*--------------------------FOOTER--------------------------
+/*************************************************************************/
+
+.site-footer
+    background-color: var(--color-background)
+    color: var(--color-text)
+    padding: var(--spacing-medium) var(--spacing-none)
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    text-align: center
+
+.footer-content
+    display: flex
+    flex-direction: column
+
+.footer-logo img
+    width: 150px
+
+.footer-links ul
+    list-style-type: none
+    padding: var(--spacing-none)
+
+.footer-links ul li
+    margin-bottom: var(--spacing-medium)
+    transition: transform 0.2s ease-in-out
+
+.footer-links ul li a
+    font-size: var(--text-large)
+    position: relative
+    color: var(--color-text)
+    text-decoration: none
+    font-size: var(--text-large)
+    overflow: hidden
+
+.footer-links ul li a::before
+    content: ""
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 0
+    height: 2px
+    background-color: var(--color-success)
+    transition: width 0.3s ease-in-out
+
+.footer-links ul li a:hover::before
+    width: 100%
+
+.footer-links ul li a:hover
+    color: var(--color-muted)
+
+.footer-social a
+    color: var(--color-muted)
+    font-size: var(--text-extralarge)
+    margin: var(--spacing-large)
+
+.footer-social a:hover
+    color: var(--color-primary)
+
+.footer-text
+    margin: var(--spacing-medium)
+    font-size: var(--text-large)
+
+@media screen and (min-width: 999px)
+.footer-links-container
+    display: flex
+    justify-content: space-between
+    width: 100%
+
+.footer-links-container ul
+    display: flex
+    list-style-type: none
+    padding: var(--spacing-none)
+
+.footer-links-container ul li
+    margin-right: var(--spacing-extralarge)
+
+/************************************************************************
+/*-------------------POLITIQUE CONFIDENTIALITE-------------------
+/*************************************************************************/
+
+.politique-confidentialite
+    background-color: var(--color-background)
+    font-family: var(--font-body)
+    font-size: var(--text-medium)
+    line-height: 1.6
+    margin: var(--spacing-none)
+    padding: 0
+    text-align: center
+
+.politique-confidentialite .container-politique
+    max-width: 800px
+    margin: 0 auto
+    padding: var(--spacing-medium)
+    text-align: left
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+    border-radius: 10px
+    background-color: #fafafa
+    border: 3px solid var(--color-primary)
+
+.politique-confidentialite h1
+    font-family: var(--font-heading)
+    font-size: var(--text-extralarge)
+    color: var(--color-text)
+    margin-bottom: var(--spacing-medium)
+    text-align: center
+
+.politique-confidentialite strong
+    color: var(--color-primary)
+
+.politique-confidentialite strong:hover
+    color: var(--color-success)
+
+.politique-confidentialite h2
+    color: var(--color-primary)
+    text-align: center
+    font-size: var(--text-large)
+
+.politique-confidentialite h2:hover
+    color: var(--color-success)
+
+.politique-confidentialite p
+    margin-bottom: var(--spacing-small)
+
+.politique-confidentialite ul
+    list-style-type: disc
+    padding-left: var(--spacing-large)
+
+.politique-confidentialite p:first-child
+    font-size: var(--text-large)
+    text-align: center
+
+.center
+    text-align: center
+
+.footer
+    color: var(--color-text)
+    margin: var(--spacing-extralarge)
+
+.back-button
+    position: fixed
+    bottom: 10px
+    right: 10px
+    display: inline-block
+    padding: 10px 20px
+    background-color: var(--color-primary)
+    color: var(--color-text)
+    text-decoration: none
+    border-radius: 5px
+    margin: 10px
+    transition: background-color 1s ease
+
+.back-button:hover
+    background-color: var(--color-success)
+
+.margin-footer
+    background-color: var(--color-background)
+    height: var(--spacing-extralarge)
+
+/************************************************************************
+/*---------------------------L'ART DU CV---------------------------
+/*************************************************************************/
+
+.cv
+    background-color: var(--color-background)
+
+.cv h2
+    font-size: var(--text-large)
+    text-align: center
+    color: var(--color-primary)
+
+.cv h2:hover
+    color: var(--color-success)
+
+.cv h3
+    text-align: center
+    color: var(--color-primary)
+
+.cv h3:hover
+    color: var(--color-success)
+
+.cv img
+    display: block
+    margin: 0 auto
+    width: 300px
+    height: 300px
+    border: solid 1px var(--color-background)
+
+.content,
+.first,
+.second,
+.third,
+.last
+    background-color: var(--color-text)
+    margin: var(--spacing-large)
+    padding: var(--spacing-medium) var(--spacing-extralarge)
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+    border-radius: var(--spacing-medium)
+    animation: fadeIn 1s ease-in
+
+.cv ul
+    list-style: disc
+    padding-left: var(--spacing-medium)
+
+.back-button
+    position: fixed
+    bottom: var(--spacing-medium)
+    right: var(--spacing-medium)
+    display: inline-block
+    padding: var(--button-padding)
+    background-color: var(--color-primary)
+    color: var(--color-text)
+    text-decoration: none
+    border-radius: var(--button-border-radius)
+    margin: var(--spacing-medium)
+    transition: background-color 1s ease
+
+.back-button:hover
+    background-color: var(--color-success)
+
+@keyframes fadeIn
+    from
+        opacity: 0
+    to
+        opacity: 1
+
+.fastcv-button
+    text-align: center
+
+.create-cv-button
+    bottom: var(--spacing-medium)
+    right: var(--spacing-medium)
+    display: inline-block
+    padding: var(--button-padding)
+    background-color: var(--color-primary)
+    color: var(--color-text)
+    text-decoration: none
+    border-radius: var(--button-border-radius)
+    margin: var(--spacing-medium)
+    transition: background-color 1s ease
+
+.create-cv-button:hover
+    background-color: var(--color-success)
+
+.footer-good-cv
+    text-align: center
+    background-color: var(--color-background)
+    padding: var(--spacing-small) var(--spacing-none)
+
+.animated-section
+    opacity: 0
+    transform: translateY(var(--spacing-medium))
+    animation: fadeInUp 1s ease-in-out forwards
+
+@keyframes fadeInUp
+    from
+        opacity: 0
+        transform: translateY(var(--spacing-medium))
+    to
+        opacity: 1
+        transform: translateY(0)
+
+.content
+    animation-delay: var(--animation-delay-1, 0.5s)
+    border: var(--spacing-small) var(--color-success) solid
+
+.first
+    animation-delay: var(--animation-delay-2, 1.5s)
+    border: var(--spacing-small) var(--color-muted) solid
+
+.second
+    animation-delay: var(--animation-delay-3, 2.5s)
+    border: var(--spacing-small) var(--color-logo) solid
+
+.third
+    animation-delay: var(--animation-delay-4, 3.5s)
+    border: var(--spacing-small) var(--color-delete) solid
+
+.last
+    animation-delay: var(--animation-delay-4, 4.5s)
+    border: var(--spacing-small) var(--color-success) solid
+
+.copyright
+    color: var(--color-text)
+
+.margin-footer
+    background-color: var(--color-background)
+    height: var(--spacing-extralarge)
+
+.back-button
+    position: fixed
+    bottom: 10px
+    right: 10px
+    display: inline-block
+    padding: 10px 20px
+    background-color: var(--color-primary)
+    color: var(--color-text)
+    text-decoration: none
+    border-radius: 5px
+    margin: 10px
+    transition: background-color 1s ease
+
+.back-button:hover
+    background-color: var(--color-success)
+
+/******************************************************
+/*-----------------ANIMATION-----------------------
+/********************************************************/
+
+.container
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: var(--spacing-none)
+
+svg
+    display: block
+    font: 8em "Montserrat"
+    width: auto
+    margin: var(--spacing-none)
+
+.text-copy
+    fill: none
+    stroke: white
+    stroke-dasharray: 6% 29%
+    stroke-width: var(--spacing-small)
+    stroke-dashoffset: 0%
+    animation: stroke-offset 5.5s infinite linear
+
+.text-copy:nth-child(1)
+    stroke: var(--color-success)
+    animation-delay: -1s
+
+.text-copy:nth-child(2)
+    stroke: var(--color-primary)
+    animation-delay: -2s
+
+.text-copy:nth-child(3)
+    stroke: var(--color-delete)
+    animation-delay: -3s
+
+.text-copy:nth-child(4)
+    stroke: var(--color-muted)
+    animation-delay: -4s
+
+.text-copy:nth-child(5)
+    stroke: rgb(207, 179, 21)
+    animation-delay: -5s
+
+@keyframes stroke-offset
+    100%
+        stroke-dashoffset: -35%
+
+/************************************************************************
+/*--------------------------ADMIN--------------------------
+/*************************************************************************/
+
+.admin-page
+    font-family: var(--font-body)
+    font-size: var(--text-medium)
+    background-color: var(--color-background)
+    color: var(--color-text)
+
+.admin-container
+    max-width: 1200px
+    margin: 0 auto
+
+.admin-header
+    background-color: var(--color-primary)
+    padding: var(--spacing-medium)
+    text-align: center
+
+.admin-header h1
+    font-family: var(--font-logo)
+    font-size: var(--text-large)
+    color: var(--color-logo)
+
+.admin-table
+    width: 100%
+    margin-top: var(--spacing-medium)
+    border-collapse: collapse
+
+.admin-table th,
+.admin-table td
+    padding: var(--spacing-medium)
+    text-align: left
+    border-bottom: 1px solid var(--color-muted)
+
+.admin-infos
+    background-color: var(--color-primary)
+    color: var(--color-text)
+
+.admin-user-info
+    font-weight: bold
+
+.admin-jobs
+    list-style: none
+    padding: var(--spacing-none)
+
+.admin-jobs li
+    margin-bottom: var(--spacing-medium)
+
+.user-delete-button
+    display: inline-block
+    padding: var(--button-padding)
+    background-color: var(--color-delete)
+    color: var(--color-text)
+    text-decoration: none
+    border-radius: var(--button-border-radius)
+    margin-top: var(--spacing-small)
+
+@media (max-width: 600px)
+    .admin-header h1
+        font-size: var(--text-medium)
+
+    .admin-table th,
+    .admin-table td
+        font-size: var(--text-small)
+
+    .user-delete-button
+        background-color: var(--color-primary)
+        color: var(--color-text)
+        padding: var(--spacing-small) var(--spacing-medium)
+        border: none
+        cursor: pointer
+        transition: background-color 0.3s ease, transform 0.3s ease
+
+        &:hover
+            background-color: var(--color-delete)
+            transform: scale(1.5)
+
+/************************************************************************
+/*----------------------TRANSLATOR STYLES-------------------------
+/*************************************************************************/
+
+.api-translation-container
+    max-width: 800px
+    margin: 0 auto
+    padding: var(--spacing-large)
+    background-color: var(--color-background)
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+    color: var(--color-text)
+
+.api-translation-header
+    font-size: var(--text-extralarge)
+    color: var(--color-logo)
+    margin-bottom: var(--spacing-large)
+    text-align: center
+
+.api-translation-form
+    margin-bottom: var(--spacing-large)
+
+.api-form-label
+    display: block
+    margin-bottom: var(--spacing-medium)
+    color: var(--color-muted)
+    font-size: var(--text-large)
+
+.api-form-input,
+.api-form-select,
+.api-form-button
+    width: 100%
+    padding: var(--spacing-medium)
+    margin-bottom: var(--spacing-medium)
+    border: 1px solid var(--color-muted)
+    border-radius: var(--button-border-radius)
+    box-sizing: border-box
+    font-size: var(--text-large)
+
+.api-form-button
+    background-color: var(--color-primary)
+    font-size: var(--text-large)
+    color: var(--color-text)
+    cursor: pointer
+
+    &:hover
+        background-color: var(--color-success)
+
+.api-translation-result
+    margin-top: var(--spacing-large)
+    text-align: center
+
+.api-results-container
+    text-align: center
+    padding: var(--spacing-large)
+    background-color: var(--color-muted)
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+    border-radius: var(--button-border-radius)
+
+.api-source
+    color: var(--color-primary)
+    font-size: var(--text-extralarge)
+    font-weight: bold
+    background-color: var(--color-text)
+    border-radius: var(--button-border-radius)
+    border: solid 2px var(--color-primary)
+
+.api-translated,
+.api-error
+    color: var(--color-success)
+    margin-bottom: var(--spacing-medium)
+    font-size: var(--text-extralarge)
+    font-weight: bold
+    background-color: var(--color-text)
+    border-radius: var(--button-border-radius)
+    border: solid 2px var(--color-primary)
+
+.api-result-text
+    color: var(--color-background)
+    margin-bottom: var(--spacing-medium)
+    font-size: var(--text-extralarge)
+    font-weight: bold
+    background-color: var(--color-muted)
+
+.api-error-text
+    color: var(--color-delete)
+    font-weight: bold
+
+.api-error-details
+    background-color: var(--color-background)
+    padding: var(--spacing-medium)
+    border-radius: var(--button-border-radius)
+    margin-top: var(--spacing-medium)
+    overflow: auto
+    color: var(--color-text)

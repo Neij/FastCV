@@ -1,4 +1,3 @@
-<!-- Ajoutez ces classes dans votre fichier HTML (api.phtml) -->
 <div class="api-translation-container">
     <h1 class="api-translation-header">Traducteur API</h1>
 
@@ -6,7 +5,6 @@
         <label class="api-form-label" for="user_input">Entrez le texte à traduire :</label>
         <input class="api-form-input" type="text" id="user_input" name="user_input" required>
 
-        <!-- Ajout de menus déroulants pour les langues -->
         <label class="api-form-label" for="source_language">Langue source :</label>
         <select class="api-form-select" id="source_language" name="source_language">
             <option value="fr">Français</option>
@@ -30,7 +28,6 @@
         <button class="api-form-button" type="submit">Traduire</button>
     </form>
 
-    <!-- Dans votre fichier PHP (api.phtml) -->
     <h2 class="api-translation-result">Résultat de la traduction</h2>
     <div class="api-results-container">
 
@@ -57,8 +54,5 @@
                 <?php endif; ?>
             </div>
         <?php endif; ?>
-
     </div>
-
-
 </div>

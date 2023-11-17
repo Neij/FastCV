@@ -33,7 +33,7 @@ function hideEditForm(formId) {
 }
 
 /********************************************************
- ----------DELETE JOB - BIN EMOJI------------------------
+ --------------AFFCIHER/CACHER MDP------------------------
  **********************************************************/
 
 document.addEventListener("DOMContentLoaded", function () {

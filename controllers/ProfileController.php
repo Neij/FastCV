@@ -5,7 +5,6 @@
 namespace Controllers;
 
 use Models\UsersAdmin;
-use Helpers\SessionManager;
 
 class ProfileController extends AppController
 {
@@ -38,6 +37,4 @@ class ProfileController extends AppController
             echo "La suppression du compte a échoué.";
         }
     }
-
-    // ... (autres méthodes)
 }

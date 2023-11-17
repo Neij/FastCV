@@ -2,11 +2,11 @@
 
 namespace Controllers;
 
-use helpers\SessionManager;
+use helpers\Request;
 
 class ApiController extends AppController
 {
-    private $rapidApiKey = '01c45b4255mshe451c206960209bp14b394jsn04aef4b0d397'; // Remplacez par votre propre clé API
+    private $rapidApiKey = '01c45b4255mshe451c206960209bp14b394jsn04aef4b0d397'; 
 
     public function __construct()
     {
@@ -16,34 +16,31 @@ class ApiController extends AppController
     public function displayTranslationForm()
     {
         if (!$this->isLoggedIn) {
-            // Rediriger vers la page d'accueil si l'utilisateur n'est pas connecté
+
             header("Location: index.php?route=home");
             exit();
         }
     
-        // Afficher le formulaire de traduction
         $this->displayPage();
     }
     
     public function translateUserInput()
     {
-        // Récupérer la phrase à traduire depuis le formulaire
-        $textToTranslate = isset($_POST['user_input']) ? $_POST['user_input'] : '';
+
+        $textToTranslate = Request::post('user_input', '');
 
         if (!empty($textToTranslate)) {
-            // Langue source par défaut
+
             $sourceLanguage = "fr";
 
-            // Langue cible par défaut
             $targetLanguage = "en";
 
-            // Vérifier si les langues source et cible sont spécifiées dans le formulaire
-            if (isset($_POST['source_language']) && isset($_POST['target_language'])) {
-                $sourceLanguage = $_POST['source_language'];
-                $targetLanguage = $_POST['target_language'];
+            if (Request::post('source_language') && Request::post('target_language')) {
+                $sourceLanguage = Request::post('source_language');
+                $targetLanguage = Request::post('target_language');
             }
 
-            // Vérifier si les langues source et cible sont différentes
+
             if ($sourceLanguage === $targetLanguage) {
                 $this->viewData['error'] = "Veuillez sélectionner deux langues différentes.";
                 $this->viewData['textToTranslate'] = $textToTranslate;
@@ -51,28 +48,24 @@ class ApiController extends AppController
                 return;
             }
 
-            // Appeler l'API de traduction
             $translation = $this->callTranslationApi($sourceLanguage, $targetLanguage, $textToTranslate);
 
-            // Vérifier si la traduction a réussi
             if ($translation && isset($translation['status']) && $translation['status'] === 'success') {
-                // Vérifier si la clé 'translatedText' est présente dans la structure de la réponse
                 if (isset($translation['data']['translatedText'])) {
-                    // Stocker le texte traduit dans la variable
+
                     $translatedText = $translation['data']['translatedText'];
                 } else {
-                    // En cas d'absence de 'translatedText', vous pouvez utiliser une valeur par défaut
+
                     $translatedText = 'No translation available.';
                 }
 
-                // Ajouter le texte source et traduit directement dans la vue
                 $this->viewData['textToTranslate'] = $textToTranslate;
                 $this->viewData['translatedText'] = $translatedText;
             } else {
-                // En cas d'échec de la traduction
+
                 $error = 'Error in translation.';
 
-                // Stocker le texte source dans la vue même en cas d'échec
+
                 $this->viewData['textToTranslate'] = $textToTranslate;
 
                 // Afficher davantage d'informations sur l'erreur
@@ -88,7 +81,7 @@ class ApiController extends AppController
             $this->viewData['error'] = "Veuillez entrer une phrase à traduire.";
         }
 
-        $this->view = "api.phtml"; // Assurez-vous que $this->view est correctement défini sur "api.phtml"
+        $this->view = "api.phtml"; 
         $this->displayPage();
     }
 
@@ -116,7 +109,6 @@ class ApiController extends AppController
             'Content-Type: application/x-www-form-urlencoded',
         ]);
 
-        // Modifiez cette ligne avec le chemin complet
         curl_setopt($ch, CURLOPT_CAINFO, 'C:/wamp64/www/FastCV/certificates/Cacert.pem');
 
         // Exécution de la requête cURL
@@ -146,5 +138,5 @@ class ApiController extends AppController
     {
         include('views/layout-web.phtml');
     }
-    
 }
+
